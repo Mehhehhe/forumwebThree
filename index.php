@@ -52,6 +52,7 @@ if(isset($_GET['code'])){
     header("location: index.php");
 }
 ?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -111,6 +112,7 @@ if(isset($_GET['code'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
 </body>
+
 <script src='./js/three.min.js'></script>
     <script src='./js/three.js'></script>
     <script src='https://threejs.org/examples/js/controls/TrackballControls.js'></script>
