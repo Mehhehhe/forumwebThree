@@ -150,7 +150,7 @@ if(isset($_GET['code'])){
             controls.maxDistance = 8;
             // Obj loader *** import obj file
             objLoader.load(
-                './model/model (1).obj',
+                './model/proj01.obj',
                 function (object){
                     object.position.x = 3;
                     object.position.y = 0;
