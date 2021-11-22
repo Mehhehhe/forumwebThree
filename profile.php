@@ -28,9 +28,10 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="row">
-                <img src="./assets/images/614695-middle.png" alt="profile img" width="50%" height="50%" style="border-radius:100%;">
+                <img src="./assets/images/614695-middle.png" alt="profile img" width="100px" height="300px" style="border-radius:100%;">
             </div>
             <div class="row" style="margin-top:30px;">
+                <h3 style="text-align:center;">Forum Lists</h3>
                 <textarea name="forum_lists" id="forum_lists" cols="10" rows="3" disabled="disabled" style="resize:none;"></textarea>
             </div>
         </div>
@@ -39,7 +40,7 @@
             <div class="row">
                 <div class="row">
                     <div class="col-lg-3">
-                        <p class="user">Username : </p>
+                        <p class="user">Username </p>
                     </div>
                     <div class="col-lg-9">
                         <input type="text" name="usernameBox" id="usernameBox" disabled="disabled">
@@ -50,6 +51,7 @@
                 <p class="email">EMAIL</p>
             </div>
             <div class="row">
+                <h2 class="profile_head">About me</h2>
                 <textarea name="about" id="about" cols="10" rows="5" disabled="disabled" style="resize:none;"></textarea>
                 <div class="row" style="margin-top:30px;">
                     <div class="col-lg-8"></div>
