@@ -63,7 +63,7 @@
     <script src='https://mamboleoo.be/learnThree/demos/OBJLoader.js'></script>
     <script type="module">
         import {OrbitControls} from 'https://cdn.skypack.dev/@three-ts/orbit-controls';
-        
+
         let scene, camera, renderer, controls, cube;
         const objLoader = new THREE.OBJLoader();
         var light, mesh;
@@ -78,7 +78,7 @@
                 width: window.innerWidth,
                 height: window.innerHeight,
             }
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
             renderer.setSize(sizes.width, sizes.height);
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.domElement.setAttribute("id", "scence3Dobj");
@@ -92,6 +92,7 @@
             controls = new OrbitControls(camera);
             controls.minDistance = 6;
             controls.maxDistance = 8;
+            controls.enablePanning = false;
             // Obj loader *** import obj file
             objLoader.load(
                 './model/proj01.obj',
@@ -102,6 +103,28 @@
                     scene.add(object);             
                 }
             );
+            objLoader.load(
+              './model/PC Monitor Set.obj',
+              function (object){
+                object.position.x = 3.75;
+                object.position.y = 1;
+                object.position.z = -1;
+                object.scale.set(0.25,0.25,0.25);
+                scene.add(object);
+              }
+            )
+
+            objLoader.load(
+              './model/textLogIn.obj',
+              (object) => {
+                object.position.x = 3.75;
+                object.position.y = 1;
+                object.position.z = -1;
+                object.scale.set(0.25,0.25,0.25);
+                scene.add(object);
+              }
+            )
+
             camera.position.x = 1;
             camera.position.y = 1;
             camera.position.z = 4;
