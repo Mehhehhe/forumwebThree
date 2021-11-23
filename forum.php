@@ -1,3 +1,8 @@
+<?php
+    require "dbconnect.php";
+    session_start();
+    if(isset($_SESSION['status']) && !empty($_SESSION['status'])){
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -72,3 +77,9 @@
     //then pop log in 
     </script>
 </html>
+<?php
+    }
+    else{
+        header("location: index.php");
+    }
+?>

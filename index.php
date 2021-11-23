@@ -1,58 +1,7 @@
 <?php
-require "config.php";
-require "dbconnect.php";
-
-if(isset($_GET['code'])){
-    $token=$gClient->fetchAccessTokenWithAuthCode($_GET['code']);    
-    
-    if(!isset($token['error'])){
-
-        $gClient->setAccessToken($token['access_token']);
-        $token = $token['access_token'];        
-        $_SESSION['access_token'] = $token;
-        $gauth = new Google_Service_Oauth2($gClient);
-        $google_info = $gauth->userinfo->get();  
-        
-        $email = $google_info['email'];
-        $first_name = $google_info['given_name'];
-        $last_name = $google_info['family_name'];
-        $picture = $google_info['picture'];      
-        
-        $query = "SELECT id FROM users WHERE email = '$email'";
-        $result = mysqli_query($connect, $query);
-        $row = mysqli_fetch_assoc($result);
-
-        if (mysqli_num_rows($result) == 0) {
-            $sql = "INSERT INTO users(f_name,l_name,avatar,gender,email,password,status) VALUES('$first_name','$last_name','$picture','$gender','$email','$token','1')";
-            mysqli_query($connect,$sql);             
-            $query = "SELECT id FROM users WHERE email = '$email'";
-            $result = mysqli_query($connect, $query);
-            $row = mysqli_fetch_assoc($result);
-            $_SESSION['user_id'] = $row['id'];
-        }
-        else if (mysqli_num_rows($result) == 1) {
-            $_SESSION['user_id'] = $row['id'];
-            $sql = "UPDATE users SET f_name = '$first_name', l_name = '$last_name', avatar = '$picture', password = '$token' WHERE email = '$email";
-            mysqli_query($connect,$sql); 
-        }
-        
-        if(!empty($first_name)){
-            $_SESSION['user_first_name'] = $first_name;
-        }
-        if(!empty($last_name)){
-            $_SESSION['user_last_name'] = $last_name;
-        }
-        if(!empty($email)){
-            $_SESSION['user_email'] = $email;
-        }
-        if(!empty($picture)){
-            $_SESSION['user_picture'] = $picture;
-        }  
-    }
-    header("location: index.php");
-}
+    require "dbconnect.php";
+    session_start();    
 ?>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -63,7 +12,7 @@ if(isset($_GET['code'])){
     <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
-<div class="form-popup" id="myForm">
+<div class="form-popup" id="myForm" style="z-index: 1000;">
   <form action="login.php" class="form-container" method="POST">
     <h1>Login</h1>
 
@@ -71,10 +20,9 @@ if(isset($_GET['code'])){
     <input type="text" placeholder="Enter Email" name="email" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="password" required>
 
     <button type="submit" class="btn" name="user_login">Login</button>
-    <button type="submit" class="btn" name="google_login"><?php echo "<a href='".$gClient->createAuthUrl()."' class='loginG'>login with Google</a>"; ?></button>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>
@@ -113,16 +61,19 @@ if(isset($_GET['code'])){
     <script src="js/main.js"></script>
 </body>
 
-<script src='./js/three.min.js'></script>
-    <script src='./js/three.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js'></script>
     <script src='https://threejs.org/examples/js/controls/TrackballControls.js'></script>
     <script src='https://mamboleoo.be/learnThree/demos/OBJLoader.js'></script>
     <script type="module">
         import {OrbitControls} from 'https://cdn.skypack.dev/@three-ts/orbit-controls';
-        
+        import {GLTFLoader} from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
+
         let scene, camera, renderer, controls, cube;
         const objLoader = new THREE.OBJLoader();
+        const gltfLoader = new GLTFLoader();
         var light, mesh;
+        var objects = [];
 
         function init() {
                 // scene
@@ -134,7 +85,7 @@ if(isset($_GET['code'])){
                 width: window.innerWidth,
                 height: window.innerHeight,
             }
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
             renderer.setSize(sizes.width, sizes.height);
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.domElement.setAttribute("id", "scence3Dobj");
@@ -145,28 +96,52 @@ if(isset($_GET['code'])){
             light.position.set( 1, 1, 4 );
             scene.add( light );
             // Orbit Control
-            controls = new OrbitControls(camera);
-            controls.minDistance = 6;
-            controls.maxDistance = 8;
+            //controls = new OrbitControls(camera);
+            //controls.minDistance = 6;
+            //controls.maxDistance = 8;
+            //controls.enablePanning = false;
             // Obj loader *** import obj file
             objLoader.load(
                 './model/proj01.obj',
                 function (object){
                     object.position.x = 3;
                     object.position.y = 0;
+                    object.scale.set(0.25,0.25,0.25);
                     scene.add(object);             
                 }
             );
+
+            objLoader.load(
+              './model/PC Monitor Set.obj',
+              function (object){
+                object.position.x = 3.75;
+                object.position.y = 1;
+                object.position.z = -1;
+                object.scale.set(0.25,0.25,0.25);
+                scene.add(object);
+              }
+            );
+
+            gltfLoader.load(
+              './model/scene.glb',
+              (object) => {
+                const root = object.scene;
+                root.scale.set(0.0325,0.0325,0.0325);
+                root.position.set(3.5,1.2,-0.6);
+                scene.add(root);
+              }
+            );
+
             camera.position.x = 1;
-            camera.position.y = 1;
-            camera.position.z = 4;
+            camera.position.y = 3;
+            camera.position.z = 6;
         }
 
         function animate() {
             requestAnimationFrame(animate);
             //cube.rotation.x += 0.01;
             //cube.rotation.y += 0.01;
-            controls.update();
+            //controls.update();
             light.position.set(camera.position.x,camera.position.y,camera.position.z);
             renderer.render(scene, camera);
         }
@@ -220,9 +195,8 @@ if(isset($_GET['code'])){
     .form-popup {
       display: none;
       position: fixed;
-      bottom: 0;
+      top: 75;
       right: 15px;
-      border: 3px solid #f1f1f1;
       z-index: 9;
     }
 
@@ -240,12 +214,14 @@ if(isset($_GET['code'])){
       margin: 5px 0 22px 0;
       border: none;
       background: #f1f1f1;
+      z-index: 1001;
     }
 
     /* When the inputs get focus, do something */
     .form-container input[type=text]:focus, .form-container input[type=password]:focus {
       background-color: #ddd;
       outline: none;
+      z-index: 1001;
     }
 
     /* Set a style for the submit/login button */
