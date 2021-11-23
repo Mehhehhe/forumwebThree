@@ -31,7 +31,7 @@ if (isset($_POST['user_login'])) {
             $_SESSION['user_picture'] = $row['avatar'];
             $_SESSION['user_id'] = $row['id'];                         
            
-            //header("location: profile.php");              
+            header("location: profile.php");              
         }
         
         else {
@@ -90,8 +90,7 @@ if(isset($_GET['code'])){
         if(!empty($picture)){
             $_SESSION['user_picture'] = $picture;
         }  
-        //header("location: profile.php");
+        header("location: profile.php");
     }    
-}   
-//header("location: index.php");
+}
 ?>
