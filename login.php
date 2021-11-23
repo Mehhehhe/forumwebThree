@@ -1,7 +1,7 @@
 <?php
+session_start();
 require "dbconnect.php";
 require "config.php";   
-session_start();
 $errors = array();
 
 if (isset($_POST['user_login'])) {
@@ -31,8 +31,7 @@ if (isset($_POST['user_login'])) {
             $_SESSION['user_picture'] = $row['avatar'];
             $_SESSION['user_id'] = $row['id'];                         
            
-            header("location: profile.php");
-              
+            //header("location: profile.php");              
         }
         
         else {
@@ -43,6 +42,7 @@ if (isset($_POST['user_login'])) {
         array_push($errors, "Email & Password is required");             
     }
 }
+
 if(isset($_GET['code'])){
     $token=$gClient->fetchAccessTokenWithAuthCode($_GET['code']);    
     
@@ -71,11 +71,11 @@ if(isset($_GET['code'])){
             $sql = "UPDATE users SET f_name = '$first_name', l_name = '$last_name', avatar = '$picture', password = '$token' WHERE email = '$email";
             mysqli_query($connect,$sql); 
         }
-
+        
         if(!empty($row['id'])){
             $_SESSION['user_id'] = $row['id'];  
         }
-        if(!empty($row['id'])){
+        if(!empty($row['status'])){
             $_SESSION['user_status'] = $row['status'];  
         }
         if(!empty($first_name)){
@@ -90,9 +90,8 @@ if(isset($_GET['code'])){
         if(!empty($picture)){
             $_SESSION['user_picture'] = $picture;
         }  
-        header("location: profile.php");
+        //header("location: profile.php");
     }    
 }   
-
-header("location: index.php");
+//header("location: index.php");
 ?>

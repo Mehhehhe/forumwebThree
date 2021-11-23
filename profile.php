@@ -1,7 +1,7 @@
 <?php
     require "dbconnect.php";
     session_start();
-    if(isset($_SESSION['status']) && !empty($_SESSION['status'])){
+    if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
 ?>
 <html lang="en">
 <head>
