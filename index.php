@@ -1,6 +1,6 @@
 <title>Home | Website</title>
 <html lang="en">
-<head>
+<head>    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +10,14 @@
     <link rel="apple-touch-icon" href="images/icon.jpg" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="css/custom.css">
+
     <link rel="stylesheet" href="css/index.css">
 </head>
 <?php           
     session_start(); 
     error_reporting(0);
-    require "config.php"; 
-    if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
+    require "config.php";      
+    if(!empty($_SESSION['user_status'])){
 ?>  
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -103,6 +104,9 @@
 <div class="row">
     <div class="col-lg-6" style="background-color:yellow;">
       <p class="latest header">Latest</p>
+      <?php
+        echo $_SESSION['user_status'];
+      ?>
     </div>
     <div class="col-lg-6" style="background-color:pink;">
     <p class="popularity header">popularity</p>
@@ -111,7 +115,6 @@
 </section>  
 </body>
 </html>
-
 <script>
 var openPopUp = false;
 function openForm() {
