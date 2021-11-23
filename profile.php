@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Sushi Website</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
     <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-          <a class="navbar-brand" href="index.php">WEB NAME</a>
+          <a class="navbar-brand" href="index.php">เรด-DIT</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -56,8 +58,37 @@
                     <div class="col-lg-3">
                         <p class="user">Username </p>
                     </div>
-                    <div class="col-lg-9">
+                    <div class="col-lg-5">
                         <input type="text" name="usernameBox" id="usernameBox" disabled="disabled">
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="container">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter"">Edit Profile</button>
+                        <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLongTitle">Edit Profile</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p>Username</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" name="" id="editUsername">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -66,20 +97,13 @@
             </div>
             <div class="row">
                 <h2 class="profile_head">About me</h2>
-                <textarea name="about" id="about" cols="10" rows="5" disabled="disabled" style="resize:none;"></textarea>
-                <div class="row" style="margin-top:30px;">
-                    <div class="col-lg-8"></div>
-                    <div class="col-lg-4" style="align-items:right;">
-                        <button onclick="">Edit Profile</button>
-                    </div>
-                </div>
+                <textarea name="about" id="about" cols="10" rows="5" disabled="disabled" style="resize:none;width:500px;"></textarea>
             </div>
         </div>
     </div>   
 </div>
 </section>  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
+    
 </body>
 <script>
 
