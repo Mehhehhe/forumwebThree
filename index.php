@@ -1,7 +1,7 @@
-<?php
-    require "dbconnect.php";
-    session_start();    
-?>
+<?php       
+    require "config.php";     
+?>  
+     
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,13 +18,15 @@
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required>
-
+    
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password" required>
 
-    <button type="submit" class="btn" name="user_login">Login</button>
+    <button type="submit" class="btn" name="user_login">Login</button>    
+    <button type="submit" class="btn" name="google_login"><?php echo "<a href='".$gClient->createAuthUrl()."' class='loginG'>login with Google</a>"; ?></button>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
+    
 </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
