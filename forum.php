@@ -6,17 +6,6 @@
     if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
 ?>
 <title>Post | Website</title>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- add icon link -->
-    <link rel="icon" href="images/icon.jpg" type="image/x-icon">
-    <!-- specifying a webpage icon for web clip -->
-    <link rel="apple-touch-icon" href="images/icon.jpg" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css">
 <body>
 <section class="main frame" style="padding-top:100;">
 <div class="container">
