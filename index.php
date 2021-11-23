@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
-<div class="form-popup" id="myForm">
+<div class="form-popup" id="myForm" style="z-index: 1000;">
   <form action="login.php" class="form-container" method="POST">
     <h1>Login</h1>
 
@@ -57,16 +57,19 @@
     <script src="js/main.js"></script>
 </body>
 
-<script src='./js/three.min.js'></script>
-    <script src='./js/three.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js'></script>
     <script src='https://threejs.org/examples/js/controls/TrackballControls.js'></script>
     <script src='https://mamboleoo.be/learnThree/demos/OBJLoader.js'></script>
     <script type="module">
         import {OrbitControls} from 'https://cdn.skypack.dev/@three-ts/orbit-controls';
+        import {GLTFLoader} from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
 
         let scene, camera, renderer, controls, cube;
         const objLoader = new THREE.OBJLoader();
+        const gltfLoader = new GLTFLoader();
         var light, mesh;
+        var objects = [];
 
         function init() {
                 // scene
@@ -89,10 +92,10 @@
             light.position.set( 1, 1, 4 );
             scene.add( light );
             // Orbit Control
-            controls = new OrbitControls(camera);
-            controls.minDistance = 6;
-            controls.maxDistance = 8;
-            controls.enablePanning = false;
+            //controls = new OrbitControls(camera);
+            //controls.minDistance = 6;
+            //controls.maxDistance = 8;
+            //controls.enablePanning = false;
             // Obj loader *** import obj file
             objLoader.load(
                 './model/proj01.obj',
@@ -103,6 +106,7 @@
                     scene.add(object);             
                 }
             );
+
             objLoader.load(
               './model/PC Monitor Set.obj',
               function (object){
@@ -112,29 +116,28 @@
                 object.scale.set(0.25,0.25,0.25);
                 scene.add(object);
               }
-            )
+            );
 
-            objLoader.load(
-              './model/textLogIn.obj',
+            gltfLoader.load(
+              './model/scene.glb',
               (object) => {
-                object.position.x = 3.75;
-                object.position.y = 1;
-                object.position.z = -1;
-                object.scale.set(0.25,0.25,0.25);
-                scene.add(object);
+                const root = object.scene;
+                root.scale.set(0.0325,0.0325,0.0325);
+                root.position.set(3.5,1.2,-0.6);
+                scene.add(root);
               }
-            )
+            );
 
             camera.position.x = 1;
-            camera.position.y = 1;
-            camera.position.z = 4;
+            camera.position.y = 3;
+            camera.position.z = 6;
         }
 
         function animate() {
             requestAnimationFrame(animate);
             //cube.rotation.x += 0.01;
             //cube.rotation.y += 0.01;
-            controls.update();
+            //controls.update();
             light.position.set(camera.position.x,camera.position.y,camera.position.z);
             renderer.render(scene, camera);
         }
@@ -188,9 +191,8 @@
     .form-popup {
       display: none;
       position: fixed;
-      bottom: 0;
+      top: 75;
       right: 15px;
-      border: 3px solid #f1f1f1;
       z-index: 9;
     }
 
@@ -208,12 +210,14 @@
       margin: 5px 0 22px 0;
       border: none;
       background: #f1f1f1;
+      z-index: 1001;
     }
 
     /* When the inputs get focus, do something */
     .form-container input[type=text]:focus, .form-container input[type=password]:focus {
       background-color: #ddd;
       outline: none;
+      z-index: 1001;
     }
 
     /* Set a style for the submit/login button */
