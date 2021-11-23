@@ -34,11 +34,6 @@
                 <a class="nav-link" id="username" href="#"></a>
               </li>
             </ul>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" id="username" href="#" onclick="openForm()">SIGN IN</a>
-              </li>
-            </ul>
           </div>
         </div>
       </nav>
@@ -68,8 +63,11 @@
         let scene, camera, renderer, controls, cube;
         const objLoader = new THREE.OBJLoader();
         const gltfLoader = new GLTFLoader();
-        var light, mesh;
+        var light, mesh,temp;
+        var openPopUp = false;
         var objects = [];
+        var canvasBounds;
+        var mouse = new THREE.Vector2();
 
         function init() {
                 // scene
@@ -81,21 +79,22 @@
                 width: window.innerWidth,
                 height: window.innerHeight,
             }
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setSize(sizes.width, sizes.height);
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.domElement.setAttribute("id", "scence3Dobj");
 
             document.body.appendChild(renderer.domElement);
+            canvasBounds = renderer.domElement.getBoundingClientRect();
             // Flashlight
             light = new THREE.PointLight( 0xffffff, 1, 100 );
             light.position.set( 1, 1, 4 );
             scene.add( light );
             // Orbit Control
-            //controls = new OrbitControls(camera);
-            //controls.minDistance = 6;
-            //controls.maxDistance = 8;
-            //controls.enablePanning = false;
+            controls = new OrbitControls(camera);
+            controls.minDistance = 3;
+            controls.maxDistance = 5;
+            controls.enablePanning = false;
             // Obj loader *** import obj file
             objLoader.load(
                 './model/proj01.obj',
@@ -115,6 +114,7 @@
                 object.position.z = -1;
                 object.scale.set(0.25,0.25,0.25);
                 scene.add(object);
+                objects.push(object);
               }
             );
 
@@ -125,19 +125,55 @@
                 root.scale.set(0.0325,0.0325,0.0325);
                 root.position.set(3.5,1.2,-0.6);
                 scene.add(root);
+                // add to clickable group
+                objects.push(root);
               }
             );
-
-            camera.position.x = 1;
-            camera.position.y = 3;
+            // Fixed Camera Position
+            camera.position.x = 3;
+            camera.position.y = 1;
             camera.position.z = 6;
+            // Fixed camera rotation
+            
+            document.addEventListener('mousedown', onDocumentMouseDown);
+            camera.lookAt(scene.position);
         }
 
+        function onDocumentMouseDown(event){
+          if(document.getElementById("myForm").style.display == "none"){
+            openPopUp = false;
+          }
+          if(openPopUp == false){  
+            event.preventDefault();
+            
+            mouse.x = ( ( event.clientX - canvasBounds.left ) / ( canvasBounds.right - canvasBounds.left ) ) * 2 - 1;
+            mouse.y = - ( ( event.clientY - canvasBounds.top ) / ( canvasBounds.bottom - canvasBounds.top) ) * 2 + 1;
+
+            var raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera(mouse, camera);
+            var intersects = raycaster.intersectObjects(objects, true);
+            //console.log(mouse);
+            console.log(intersects);
+            if(intersects.length > 0){
+              intersects[0].object.material.color.setHex(Math.random() * 0xffffff);
+              openForm();
+            }
+          }
+        }
+
+        function openForm() {
+          document.getElementById("myForm").style.display = "block";
+          openPopUp = true;
+        }
         function animate() {
             requestAnimationFrame(animate);
-            //cube.rotation.x += 0.01;
-            //cube.rotation.y += 0.01;
-            //controls.update();
+            controls.update();
+            if(openPopUp == true){
+              controls.enabled = false;
+            }
+            else if (openPopUp == false){
+              controls.enabled = true;
+            }
             light.position.set(camera.position.x,camera.position.y,camera.position.z);
             renderer.render(scene, camera);
         }
@@ -154,13 +190,9 @@
         animate();
     </script>
     <script>
-      function openForm() {
-        document.getElementById("myForm").style.display = "block";
-      }
-
       function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-      }
+          document.getElementById("myForm").style.display = "none";
+        }
     </script>
     <style>
     body{
