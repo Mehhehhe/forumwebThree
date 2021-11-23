@@ -27,7 +27,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-          <a class="navbar-brand" href="index.php">WEB NAME</a>
+          <a class="navbar-brand" href="#">เรด-DIT</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -37,35 +37,26 @@
                 <a class="nav-link" id="forum" href="forum.php">Forum</a>
               </li>
             </ul>
-            <ul class="navbar-nav">
-              <li class="nav-item">
+            <ui class="navbar-nav">
+              <li class="nav-">
               <div class="dropdown">
                 <button class="dropbtn">
                   <img src="./assets/images/user_icon_placeholder.png" alt="" width="20px" height="20px" style="border-radius:100%;">
                 </button>
                 <div class="dropdown-content">
-                  <a href="profile.php">Profile</a>
+                  <a href="profile.php" class="profile-link">View Profile</a>
                   <a href="javascript:void(0)">Log Out</a>
                 </div>
-              </div>
+          </div>
               </li>
-            </ul>
-            
+            </ui>            
           </div>
         </div>
       </nav>
 
-
-
-
-<section class="main frame" style="position: relative; top:100%;">
+<section class="main frame" style="position: sticky; top: 100px; width: 100px; margin-left: 50px;">
 <div class="row">
-    <div class="col-lg-6" style="background-color:yellow;">
-      <p class="latest header">Latest</p>
-    </div>
-    <div class="col-lg-6" style="background-color:pink;">
-    <p class="popularity header">popularity</p>
-    </div>
+  <p class="latest header" style="font-size: 36px; border: 2px dashed black;">Latest</p>
 </div>
 
 </section>  
@@ -115,12 +106,12 @@
             controls = new OrbitControls(camera);
             controls.minDistance = 3;
             controls.maxDistance = 5;
-            controls.enablePanning = false;
+            //controls.enableRotate = false;
             // Obj loader *** import obj file
             objLoader.load(
                 './model/proj01.obj',
                 function (object){
-                    object.position.x = 3;
+                    object.position.x = 0;
                     object.position.y = 0;
                     object.scale.set(0.25,0.25,0.25);
                     scene.add(object);             
@@ -130,7 +121,7 @@
             objLoader.load(
               './model/PC Monitor Set.obj',
               function (object){
-                object.position.x = 3.75;
+                object.position.x = 0.75;
                 object.position.y = 1;
                 object.position.z = -1;
                 object.scale.set(0.25,0.25,0.25);
@@ -144,16 +135,16 @@
               (object) => {
                 const root = object.scene;
                 root.scale.set(0.0325,0.0325,0.0325);
-                root.position.set(3.5,1.2,-0.6);
+                root.position.set(0.5,1.2,-0.6);
                 scene.add(root);
                 // add to clickable group
                 objects.push(root);
               }
             );
             // Fixed Camera Position
-            camera.position.x = 3;
-            camera.position.y = 1;
-            camera.position.z = 6;
+            camera.position.x = 15;
+            camera.position.y = 20;
+            camera.position.z = 26;
             // Fixed camera rotation
             
             document.addEventListener('mousedown', onDocumentMouseDown);
@@ -188,6 +179,7 @@
         }
         function animate() {
             requestAnimationFrame(animate);
+            //console.log(camera.position);
             controls.update();
             if(openPopUp == true){
               controls.enabled = false;
@@ -220,7 +212,7 @@
     <style>
     body{
         margin: 0;
-        overflow-x: hidden;
+        overflow: hidden;
     }
     {box-sizing: border-box;}
     
@@ -249,6 +241,8 @@
       top: 75;
       right: 15px;
       z-index: 9;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      border-radius: 25px;
     }
 
     /* Add styles to the form container */
