@@ -1,7 +1,6 @@
 <?php
     require "dbconnect.php";
-    require "header.php";
-    session_start();
+    require "header.php";    
     if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
 ?>
 <head>

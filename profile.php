@@ -1,7 +1,6 @@
 <?php
     require "dbconnect.php";
-    require "header.php";
-    session_start();
+    require "header.php";    
     // echo "<h1>";
     // echo $_SESSION['user_first_name'];
     // echo "</h1>";

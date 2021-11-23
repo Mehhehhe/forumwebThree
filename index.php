@@ -1,7 +1,6 @@
 <?php       
     require "config.php";  
     require "header.php";  
-    session_start(); 
 ?>  
           
 <head>    

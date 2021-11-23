@@ -1,3 +1,4 @@
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,6 +11,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="css/custom.css">
 </head>
+<?php           
+    session_start(); 
+    if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
+?>  
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
@@ -42,6 +47,37 @@
       </nav>
 </body>
 </html>
+<?php           
+    }
+    else{
+?>  
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="index.php">WEB NAME</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse ms-auto justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" id="forum" href="forum.php">Forum</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" id="myForm" onclick="openForm()">Forum</a>
+              </li>
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+</body>
+</html>
+<?php         
+    }
+?>  
 <style>
     body{
         margin: 0;
@@ -88,6 +124,19 @@
 
     .dropdown:hover .dropbtn {background-color: red;}
 </style>
+
+
+<script>
+    /*
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+        openPopUp = true;
+    }
+    function closeForm() {
+          document.getElementById("myForm").style.display = "none";
+    }
+    */
+</script>
 <?php
 if(isset($_GET["logout"])){
     session_destroy();
