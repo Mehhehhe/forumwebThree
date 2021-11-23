@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 require "dbconnect.php";
 require "config.php";   
 $errors = array();
@@ -30,16 +31,15 @@ if (isset($_POST['user_login'])) {
             $_SESSION['user_status'] = $row['status'];
             $_SESSION['user_picture'] = $row['avatar'];
             $_SESSION['user_id'] = $row['id'];                         
-           
-            header("location: profile.php");              
+            header("location: index.php?error=1");                     
         }
         
         else {
-            array_push($errors, "Wrong Email or Password");                     
+            array_push($errors, "Wrong Email or Password");                           
         }
     }
     else {
-        array_push($errors, "Email & Password is required");             
+        array_push($errors, "Email & Password is required");               
     }
 }
 
@@ -89,8 +89,9 @@ if(isset($_GET['code'])){
         }
         if(!empty($picture)){
             $_SESSION['user_picture'] = $picture;
-        }  
-        header("location: profile.php");
+        }   
+        header("location: index.php?error=1");       
     }    
 }
+header("location: index.php?error=2");   
 ?>

@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,9 +9,11 @@
     <link rel="apple-touch-icon" href="images/icon.jpg" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <?php           
     session_start(); 
+    require "config.php"; 
     if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
 ?>  
 <body>
@@ -52,6 +53,21 @@
     else{
 ?>  
 <body>
+    <div class="form-popup" id="myForm" style="z-index: 1000;">
+    <form action="login.php" class="form-container" method="POST">
+        <h1>Login</h1>
+
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+
+        <button type="submit" class="btn" name="user_login">Login</button>
+        <button type="submit" class="btn" name="google_login"><?php echo "<a href='".$gClient->createAuthUrl()."' class='loginG'>Login with Google</a>"; ?></button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
           <a class="navbar-brand" href="index.php">WEB NAME</a>
@@ -61,12 +77,7 @@
           <div class="collapse navbar-collapse ms-auto justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" id="forum" href="forum.php">Forum</a>
-              </li>
-            </ul>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" id="myForm" onclick="openForm()">Forum</a>
+                <a class="nav-link" id="myForm" onclick="openForm()">Sign in</a>
               </li>
             </ul>
             
@@ -78,74 +89,17 @@
 <?php         
     }
 ?>  
-<style>
-    body{
-        margin: 0;
-        overflow-x: hidden;
-    }
-    {box-sizing: border-box;}
-    
-    canvas{
-      background: transparent;
-    }
 
-    .dropbtn {
-      background-color: transparent;
-      color: white;
-      padding: 16px;
-      font-size: 16px;
-      border: none;
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f1f1f1;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-    }
-
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-
-    .dropdown-content a:hover {background-color: #ddd;}
-
-    .dropdown:hover .dropdown-content {display: block;}
-
-    .dropdown:hover .dropbtn {background-color: red;}
-</style>
 
 
 <script>
-    /*
-    function openForm() {
-        document.getElementById("myForm").style.display = "block";
-        openPopUp = true;
-    }
-    function closeForm() {
-          document.getElementById("myForm").style.display = "none";
-    }
-    */
-</script>
-<?php
-if(isset($_GET["logout"])){
-    session_destroy();
-    unset($_SESSION["user_email"]);
-    unset($_SESSION["user_first_name"]);
-    unset($_SESSION["user_last_name"]);
-    unset($_SESSION["user_status"]);
-    unset($_SESSION["user_picture"]);
-    unset($_SESSION["user_id"]);
-    header('location: index.php');
+    
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+    openPopUp = true;
 }
-?>
+function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+}
+    
+</script>
