@@ -3,7 +3,7 @@
     error_reporting(0);
     if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
 ?>
-<title>Home | Sushi Website</title>
+<title>Post | Website</title>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

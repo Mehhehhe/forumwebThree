@@ -1,5 +1,4 @@
-
-<title>Home | Sushi Website</title>
+<title>Home | Website</title>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
