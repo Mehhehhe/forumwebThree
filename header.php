@@ -37,7 +37,10 @@ session_start();
                       echo "assets/images/user_icon_placeholder.png";  
                   }
                   ?>
-                    " alt="" width="20px" height="20px" style="border-radius:100%;">
+                    " alt="" width="30px" height="30px" style="border-radius:100%;">
+                  <?php
+                      echo $_SESSION['user_email_name'];
+                  ?>
                 </button>
                 <div class="dropdown-content">
                   <a href="profile.php">Profile</a>

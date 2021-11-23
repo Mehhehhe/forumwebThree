@@ -12,7 +12,13 @@
         <div class="col-lg-3">
             <div class="row">
                 <?php
-                    echo "<img src=\"./assets/profile/".$_SESSION['user_picture'].".jpg\" alt=\"profile img\" width=\"100px\" height=\"300px\" style=\"border-radius:100%;\">"
+                    echo "<img src=\""; if(!empty($_SESSION['user_picture'])){
+                        echo $_SESSION['user_picture'];
+                    }
+                    else{
+                        echo "assets/images/user_icon_placeholder.png";  
+                    }
+                    echo "\" alt=\"profile img\" width=\"150px\" height=\"300px\" style=\"border-radius:100%\">";
                 ?>
             </div>
             <div class="row" style="margin-top:30px;">

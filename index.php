@@ -43,7 +43,7 @@
                       echo "assets/images/user_icon_placeholder.png";  
                   }
                   ?>
-                    " alt="" width="20px" height="20px" style="border-radius:100%;">
+                    " alt="" width="30px" height="30px" style="border-radius:100%;">
                   <?php
                       echo $_SESSION['user_email_name'];
                   ?>
@@ -114,9 +114,6 @@
 <div class="row">
     <div class="col-lg-6" style="background-color:yellow;">
       <p class="latest header">Latest</p>
-      <?php
-        echo $_SESSION['user_status'];
-      ?>
     </div>
     <div class="col-lg-6" style="background-color:pink;">
     <p class="popularity header">popularity</p>
