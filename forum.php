@@ -2,7 +2,6 @@
     require "dbconnect.php";
     require "header.php";
     error_reporting(0);
-    session_start();
     if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
 ?>
 <title>Post | Website</title>

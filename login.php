@@ -29,8 +29,14 @@ if (isset($_POST['user_login'])) {
             $_SESSION['user_last_name'] = $row['l_name'];          
             $_SESSION['user_status'] = $row['status'];
             $_SESSION['user_picture'] = $row['avatar'];
-            $_SESSION['user_id'] = $row['id'];                         
-            //header("location: index.php?error=1");                     
+            $_SESSION['user_id'] = $row['id'];   
+            $e = explode("@", $email);    
+            $_SESSION['user_email_name'] = $e[0];
+            if ($_SESSION['user_email_name']==""){
+                $_SESSION['user_email_name'] = $email;
+            }           
+                              
+            header("location: index.php?error=1");                     
         }
         
         else {
@@ -92,26 +98,34 @@ if(isset($_GET['code'])){
         }
         if(!empty($email)){
             $_SESSION['user_email'] = $email;
+            $e = explode("@", $email);    
+            $_SESSION['user_email_name'] = $e[0];
+            if ($_SESSION['user_email_name']==""){
+                $_SESSION['user_email_name'] = $email;
+            } 
         }
         if(!empty($picture)){
             $_SESSION['user_picture'] = $picture;
-        }           
+        }  
+                   
         header("location: index.php?error=1");       
     }    
 } 
-/*
-echo "id :";
+
+echo "id : ";
 echo $_SESSION['user_id'];
-echo "<br>email :";
+echo "<br>email : ";
 echo $_SESSION['user_email'];
-echo "<br>first_name :";
+echo "<br>username : ";
+echo $_SESSION['user_email_name'];
+echo "<br>first_name : ";
 echo $_SESSION['user_first_name'];
-echo "<br>last_name :";
+echo "<br>last_name : ";
 echo $_SESSION['user_last_name'];
-echo "<br>status :";
+echo "<br>status : ";
 echo $_SESSION['user_status'];
-echo "<br>picture :";
+echo "<br>picture : ";
 echo $_SESSION['user_picture'];
-*/
+
 header("location: index.php");
 ?>

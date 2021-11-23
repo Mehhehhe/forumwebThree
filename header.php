@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,7 +30,14 @@
               <li class="nav-item">
               <div class="dropdown">
                 <button class="dropbtn">
-                  <img src="./assets/images/user_icon_placeholder.png" alt="" width="20px" height="20px" style="border-radius:100%;">
+                  <img src="<?php if(!empty($_SESSION['user_picture'])){
+                      echo $_SESSION['user_picture'];
+                  }
+                  else{
+                      echo "assets/images/user_icon_placeholder.png";  
+                  }
+                  ?>
+                    " alt="" width="20px" height="20px" style="border-radius:100%;">
                 </button>
                 <div class="dropdown-content">
                   <a href="profile.php">Profile</a>
