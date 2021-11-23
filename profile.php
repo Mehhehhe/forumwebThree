@@ -2,6 +2,9 @@
     require "dbconnect.php";
     require "header.php";
     session_start();
+    // echo "<h1>";
+    // echo $_SESSION['user_first_name'];
+    // echo "</h1>";
     if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
 ?>
 <html lang="en">
@@ -34,7 +37,9 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="row">
-                <img src="./assets/images/614695-middle.png" alt="profile img" width="100px" height="300px" style="border-radius:100%;">
+                <?php
+                    echo "<img src=\"./assets/profile/".$_SESSION['user_picture'].".jpg\" alt=\"profile img\" width=\"100px\" height=\"300px\" style=\"border-radius:100%;\">"
+                ?>
             </div>
             <div class="row" style="margin-top:30px;">
                 <h3 style="text-align:center;">Forum Lists</h3>
@@ -46,15 +51,45 @@
             <div class="row">
                 <div class="row">
                     <div class="col-lg-3">
-                        <p class="user">Username </p>
+                        <p class="user">Username</p>
                     </div>
                     <div class="col-lg-9">
-                        <input type="text" name="usernameBox" id="usernameBox" disabled="disabled">
+                        <?php
+                            echo "<input type=\"text\" placeholder=\"";
+                            echo $_SESSION['user_first_name'];
+                            echo "\" name=\"usernameBox\" id=\"usernameBox\" disabled=\"disabled\">";
+                        ?>
+                        <!-- <input type="text" placeholder="test" name="usernameBox" id="usernameBox" disabled="disabled"> -->
                     </div>
                 </div>
-                
-                <p class="id">ID</p>
-                <p class="email">EMAIL</p>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p class="user">ID</p>
+                    </div>
+                    <div class="col-lg-9">
+                        <?php
+                            echo "<input type=\"text\" placeholder=\"";
+                            echo $_SESSION['user_id'];
+                            echo "\" name=\"useridBox\" id=\"useridBox\" disabled=\"disabled\">";
+                        ?>
+                        <!-- <input type="text" placeholder="test" name="usernameBox" id="usernameBox" disabled="disabled"> -->
+                    </div>
+                </div>
+                <!-- <p class="id">ID</p> -->
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p class="user">EMAIL</p>
+                    </div>
+                    <div class="col-lg-9">
+                        <?php
+                            echo "<input type=\"text\" placeholder=\"";
+                            echo $_SESSION['user_email'];
+                            echo "\" name=\"useremailBox\" id=\"useremailBox\" disabled=\"disabled\">";
+                        ?>
+                        <!-- <input type="text" placeholder="test" name="usernameBox" id="usernameBox" disabled="disabled"> -->
+                    </div>
+                </div>
+                <!-- <p class="email">EMAIL</p> -->
             </div>
             <div class="row">
                 <h2 class="profile_head">About me</h2>
