@@ -77,7 +77,7 @@
                                                 <label for="f_name">Username</label>
                                                 <?php
                                                     echo "<input type=\"text\" class=\"form-control\" id=\"username\"";
-                                                    echo " placeholder=\"".$_SESSION['user_first_name']."\"";
+                                                   
                                                     echo " name=\"username\" required>";
                                                 ?>
                                             </div>
@@ -85,7 +85,7 @@
                                                 <label for="l_name">Surname</label>
                                                 <?php
                                                     echo "<input type=\"text\" class=\"form-control\" id=\"lastname\"";
-                                                    echo " placeholder=\"".$_SESSION['user_last_name']."\"";
+                                                    
                                                     echo " name=\"lastname\" required>";
                                                 ?>
                                             </div>
