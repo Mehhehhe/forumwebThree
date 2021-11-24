@@ -79,18 +79,36 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                      <form action="controllerProfile.php" method="post">
-                                            <label for="Username">Gender:</label>
-                                            <input type="text" id="editSex" name="sex">
-                                            <label for="Username">Major:</label>
-                                            <input type="text" id="editSex" name="major">
-                                            <label for="Username">About Me:</label>
-                                            <textarea class="form-control" id="aboutMeText" name="introduce"></textarea>
-                                        <button type="submit" class="btn btn-primary" name="change_info">Save changes</button>
-                                      </form>
+                                        <form id="addUser">
+                                            <div class="form-group">
+                                                <label for="f_name">Username</label>
+                                                <?php
+                                                    echo "<input type=\"list\" class=\"form-control\"";
+                                                    echo " placeholder=\"".$_SESSION['user_first_name']."\"";
+                                                    echo " name=\"username\" required>";
+                                                ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="l_name">Surname</label>
+                                                <?php
+                                                    echo "<input type=\"list\" class=\"form-control\"";
+                                                    echo " placeholder=\"".$_SESSION['user_last_name']."\"";
+                                                    echo " name=\"lastname\" required>";
+                                                ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <?php
+                                                    echo "<input type=\"list\" class=\"form-control\"";
+                                                    echo " placeholder=\"**********\"";
+                                                    echo " name=\"password\" required>";
+                                                ?>
+                                            </div>
+                                        </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button id="submitbn" data-dismiss="modal" class="btn btn-success">Submit</button>
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +126,8 @@
     </div>   
 </div>
 </section>  
-    
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 <script>
 
