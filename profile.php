@@ -91,7 +91,17 @@
 </body>
 
 </html>
-<?php    
+<?php 
+        if($_GET['error']==1){
+            echo '<script type="text/javascript">';
+            echo ' alert("Change Profile Complete!!"); ';  //not showing an alert box.
+            echo '</script>';
+        }
+        else if ($_GET['error']==2){
+            echo '<script type="text/javascript">';
+            echo ' alert("Change Profile Fail!!"); ';  //not showing an alert box.
+            echo '</script>';
+        }   
     }
     else{
         header("location: index.php");
