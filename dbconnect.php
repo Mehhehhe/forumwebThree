@@ -1,6 +1,6 @@
 <?php
     error_reporting(-1);
-    $servername = "localhost";
+    $servername = "0.0.0.0:3306";
     //$username = "root";
     //$password = "";
     //$servername = "34.124.243.161:3366";
@@ -9,8 +9,7 @@
     $dbname = "project";
 
         // Create Connection
-        $connect = mysqli_connect($servername, $username, $password, $dbname);
-        //$connect = mysqli_connect($servername, $username, $password, $dbname,3306);
+        $connect = mysqli_connect($servername, $username, $password, $dbname,3306);
         // Check connection
         if (!$connect) {
             echo mysqli_connect_error();
