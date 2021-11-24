@@ -1,4 +1,8 @@
 <title>Home | Website</title>
+<?php
+    require "dbconnect.php";
+    session_start();    
+?>
 <html lang="en">
 <head>    
     <meta charset="UTF-8">
@@ -21,8 +25,9 @@
 ?>  
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
         <div class="container">
-          <a class="navbar-brand" href="index.php">WEB NAME</a>
+          <a class="navbar-brand" href="#">เรด-DIT</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -81,18 +86,10 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-          <a class="navbar-brand" href="index.php">WEB NAME</a>
+          <a class="navbar-brand" href="index.php">เรด-DIT</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse ms-auto justify-content-end" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" id="myForm" onclick="openForm()">Sign in</a>
-              </li>
-            </ul>
-            
-          </div>
         </div>
       </nav>
 <?php         
@@ -110,36 +107,13 @@
   
 ?>  
 
-<section class="main frame" style="position: relative; top:100%;">
+<section class="main frame" style="position: relative; top: 100px; width: 100px; margin-left: 50px; z-index:1400;">
 <div class="row">
-    <div class="col-lg-6" style="background-color:yellow;">
-      <p class="latest header">Latest</p>
-    </div>
-    <div class="col-lg-6" style="background-color:pink;">
-    <p class="popularity header">popularity</p>
-    </div>
+  <p class="latest header" style="font-size: 36px; border: 2px dashed black;">Latest</p>
 </div>
 </section>  
 </body>
 </html>
-<script>
-var openPopUp = false;
-function openForm() {
-  if(openPopUp == true){
-    document.getElementById("myForm").style.display = "none";
-    openPopUp = false;
-  }
-  else{
-    document.getElementById("myForm").style.display = "block";
-    openPopUp = true;
-  }  
-}
-
-function closeForm() {
-    document.getElementById("myForm").style.display = "none";
-    openPopUp = false;
-}
-</script>
 
 <script src="js/main.js"></script>
 <script type="module" src="js/index.js"></script>
@@ -148,3 +122,9 @@ function closeForm() {
 <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js'></script>
 <script src='https://threejs.org/examples/js/controls/TrackballControls.js'></script>
 <script src='https://mamboleoo.be/learnThree/demos/OBJLoader.js'></script>
+    <script>
+      function closeForm() {
+          document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+</html>
