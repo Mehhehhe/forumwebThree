@@ -29,6 +29,7 @@
         <div class="row">
             <div class="col-md-6">
                 <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="position:relative; "> Like</i>
+                <p class="likeCount" name="like_post"></p>
             </div>
             <div class="col-md-6">
                 <p class="creator" style="text-align:end;">
@@ -44,16 +45,16 @@
      <div class="container" id="comments" style="margin-top:200px;">   
     	<div class="row">
             <div class="col-sm-8">   
-                <form>
+                <form action="controllerForum.php" method="POST">
                 	<h3 class="pull-left">New Comment</h3>
-                	<button type="submit" id="submitButton" class="btn btn-normal pull-right">Submit</button>
+                	<button type="submit" id="submitButton" class="btn btn-normal pull-right" name="comment_post">Submit</button>
                     <fieldset>
                         <div class="row">
                             <div class="col-sm-3 col-lg-2 hidden-xs">
                             	<?php //user profile picture?>
                             </div>
                             <div class="form-group col-xs-12 col-sm-9 col-lg-10">
-                                <textarea class="form-control" id="message" placeholder="Your message" required=""></textarea>
+                                <textarea class="form-control" name="msg_comment" id="message" placeholder="Your message" required=""></textarea>
                             </div>
                         </div>  	
                     </fieldset>
