@@ -1,8 +1,8 @@
 <?php
-    //require "dbconnect.php";
+    require "dbconnect.php";
     require "header.php";
-    //error_reporting(0);
-    //if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
+    error_reporting(0);
+    if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
 ?>
 <title>Post | Website</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -308,8 +308,8 @@ function closePost(){
 </script>
 </html>
 <?php
-    //}
-    //else{
-    //    header("location: index.php");
-    //}
+    }
+    else{
+        header("location: index.php");
+    }
 ?>
