@@ -1,4 +1,9 @@
 <title>Home | Website</title>
+<?php
+    require "dbconnect.php";
+    session_start();        
+    error_reporting(-1);
+?>
 <html lang="en">
 <head>    
     <meta charset="UTF-8">
@@ -13,6 +18,10 @@
 
     <link rel="stylesheet" href="css/index.css">
 </head>
+<?php          
+    require "config.php";      
+    if(!empty($_SESSION['user_status'])){
+?>  
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 
@@ -30,7 +39,18 @@
             <ul class="navbar-nav">
               <li class="nav-item">
               <div class="dropdown">
-                <button class="dropbtn">                  
+                <button class="dropbtn">
+                  <img src="<?php if(!empty($_SESSION['user_picture'])){
+                      echo $_SESSION['user_picture'];
+                  }
+                  else{
+                      echo "assets/images/user_icon_placeholder.png";  
+                  }
+                  ?>
+                    " alt="" width="30px" height="30px" style="border-radius:100%;">
+                  <?php
+                      echo $_SESSION['user_email_name'];
+                  ?>
                 </button>
                 <div class="dropdown-content">
                   <a href="profile.php">Profile</a>
@@ -43,6 +63,10 @@
           </div>
         </div>
       </nav>
+<?php           
+    }
+    else{
+?>  
 <body>
     <div class="form-popup" id="myForm" style="z-index: 1000;">
     <form action="login.php" class="form-container" method="POST">
@@ -64,7 +88,20 @@
         </div>
       </nav>
       <script type="module" src="js/index.js"></script>
-
+<?php         
+    }
+    if($_GET['error']==1){
+      echo '<script type="text/javascript">';
+      echo ' alert("Login Complete!!"); ';  //not showing an alert box.
+      echo '</script>';
+    }
+    else if ($_GET['error']==2){
+        echo '<script type="text/javascript">';
+        echo ' alert("Login Fail!!"); ';  //not showing an alert box.
+        echo '</script>';
+    }
+  
+?>  
 
 <section class="main frame" style="position: relative; top: 100px; width: 100px; margin-left: 50px; z-index:1400;">
 <div class="row">
