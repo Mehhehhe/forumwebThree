@@ -79,7 +79,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form id="addUser">
+                                        <form id="edit_profile">
                                             <div class="form-group">
                                                 <label for="f_name">Username</label>
                                                 <?php
