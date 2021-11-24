@@ -68,6 +68,9 @@
                         ?>
                         <!-- <input type="text" placeholder="test" name="usernameBox" id="usernameBox" disabled="disabled"> -->
                     </div>
+                    <?php
+
+                    ?>
                     <div class="col-lg-4">
                         <div class="container">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter"">Edit Profile</button>
@@ -79,11 +82,11 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form id="edit_profile">
+                                        <form id="form_edit" name="form_edit" method="update" action="update.php">
                                             <div class="form-group">
                                                 <label for="f_name">Username</label>
                                                 <?php
-                                                    echo "<input type=\"list\" class=\"form-control\"";
+                                                    echo "<input type=\"text\" class=\"form-control\" id=\"username\"";
                                                     echo " placeholder=\"".$_SESSION['user_first_name']."\"";
                                                     echo " name=\"username\" required>";
                                                 ?>
@@ -91,7 +94,7 @@
                                             <div class="form-group">
                                                 <label for="l_name">Surname</label>
                                                 <?php
-                                                    echo "<input type=\"list\" class=\"form-control\"";
+                                                    echo "<input type=\"text\" class=\"form-control\" id=\"lastname\"";
                                                     echo " placeholder=\"".$_SESSION['user_last_name']."\"";
                                                     echo " name=\"lastname\" required>";
                                                 ?>
@@ -99,16 +102,19 @@
                                             <div class="form-group">
                                                 <label for="password">Password</label>
                                                 <?php
-                                                    echo "<input type=\"list\" class=\"form-control\"";
+                                                    echo "<input type=\"password\" class=\"form-control\" id=\"password\"";
                                                     echo " placeholder=\"**********\"";
                                                     echo " name=\"password\" required>";
                                                 ?>
                                             </div>
+                                            <div style="margin-top: 1rem;">
+                                            <button type="submit" name="submitbn" id="submitbn" data-dismiss="modal" class="btn btn-success">Submit</button>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                            </div>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button id="submitbn" data-dismiss="modal" class="btn btn-success">Submit</button>
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                        
                                     </div>
                                 </div>
                             </div>
