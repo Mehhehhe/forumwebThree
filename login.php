@@ -3,7 +3,7 @@ session_start();
 require "dbconnect.php";
 require "config.php";   
 $errors = array();
-error_reporting(-1);
+//error_reporting(0);
 
 if (isset($_POST['user_login'])) {
     $email = mysqli_real_escape_string($connect, $_POST['email']);

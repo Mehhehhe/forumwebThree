@@ -1,9 +1,4 @@
 <title>Home | Website</title>
-<?php
-    require "dbconnect.php";
-    session_start();        
-    error_reporting(-1);
-?>
 <html lang="en">
 <head>    
     <meta charset="UTF-8">
@@ -39,18 +34,7 @@
             <ul class="navbar-nav">
               <li class="nav-item">
               <div class="dropdown">
-                <button class="dropbtn">
-                  <img src="<?php if(!empty($_SESSION['user_picture'])){
-                      echo $_SESSION['user_picture'];
-                  }
-                  else{
-                      echo "assets/images/user_icon_placeholder.png";  
-                  }
-                  ?>
-                    " alt="" width="30px" height="30px" style="border-radius:100%;">
-                  <?php
-                      echo $_SESSION['user_email_name'];
-                  ?>
+                <button class="dropbtn">                 
                 </button>
                 <div class="dropdown-content">
                   <a href="profile.php">Profile</a>

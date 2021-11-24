@@ -2,7 +2,7 @@
 <?php
     require "dbconnect.php";
     session_start();        
-    error_reporting(-1);
+    //error_reporting(0);
 ?>
 <html lang="en">
 <head>    
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <?php          
-    //require "config.php";      
+    require "config.php";      
     if(!empty($_SESSION['user_status'])){
 ?>  
 <body>

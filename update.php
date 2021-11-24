@@ -1,7 +1,7 @@
 <?php
 include("dbconnect.php");
 include("header.php");
-error_reporting(-1);
+//error_reporting(0);
  $sql="UPDATE users SET
         f_name = '".$_GET["username"]."',
         l_name = '".$_GET["lastname"]."',
