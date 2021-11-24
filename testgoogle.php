@@ -1,5 +1,5 @@
 <?php
-require "config2.php";
+require "configtest.php";
 if(isset($_GET['code'])){
     $token=$gClient->fetchAccessTokenWithAuthCode($_GET['code']);    
     
