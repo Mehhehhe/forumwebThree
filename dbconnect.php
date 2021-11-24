@@ -4,7 +4,7 @@
     $username = "root";
     $password = "";
     //$servername = "34.124.243.161:3306";
-   // $username = "ite";
+    //$username = "ite";
     //$password = "ite@@#2021";
     $dbname = "project";
 

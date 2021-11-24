@@ -1,6 +1,7 @@
 <?php
-require "config.php";
-$token=$gClient->fetchAccessTokenWithAuthCode($_GET['code']);    
+require "config2.php";
+if(isset($_GET['code'])){
+    $token=$gClient->fetchAccessTokenWithAuthCode($_GET['code']);    
     
     if(!isset($token['error'])){
 
@@ -14,4 +15,15 @@ $token=$gClient->fetchAccessTokenWithAuthCode($_GET['code']);
         $first_name = $google_info['given_name'];
         $last_name = $google_info['family_name'];
         $picture = $google_info['picture'];    
+        echo "<br>email : ";
+        echo $email;
+        echo "<br>first_name : ";
+        echo $first_name;
+        echo "<br>last_name : ";
+        echo $last_name;
+    }
+}
+else{
+    echo "<a href='".$gClient->createAuthUrl()."' class='loginG'>Login with Google</a>";
+}
 ?>
