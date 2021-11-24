@@ -1,5 +1,6 @@
 <?php
 session_start(); 
+error_reporting(-1);
 unset($_SESSION["user_email"]);
 unset($_SESSION["user_first_name"]);
 unset($_SESSION["user_last_name"]);

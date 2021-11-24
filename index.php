@@ -1,8 +1,8 @@
 <title>Home | Website</title>
 <?php
     require "dbconnect.php";
-    session_start();    
-    //error_reporting(0);
+    session_start();        
+    error_reporting(-1);
 ?>
 <html lang="en">
 <head>    

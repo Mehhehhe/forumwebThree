@@ -1,7 +1,7 @@
 <?php
     require "dbconnect.php"; 
     require "header.php";
-    //error_reporting(0); 
+    error_reporting(-1);
     if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
 ?>
 <title>Profile | Website</title>
