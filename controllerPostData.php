@@ -75,7 +75,7 @@ if(!empty($_SESSION['user_status'])){
             } 
         }
 
-        header("location: post.php?id=$id_post");
+        header("location: forum.php?id=$id_post");
     }
     
     if (isset($_POST['comment_post'])) {        
@@ -94,9 +94,8 @@ if(!empty($_SESSION['user_status'])){
             array_pop($errors);
         } 
 
-        header("location: post.php?id=$id_post");
+        header("location: forum.php?id=$id_post");
     }
-
 
     if(isset($_POST['del_comment'])){
         $id_comment = $_POST['id_comment'];
@@ -117,7 +116,7 @@ if(!empty($_SESSION['user_status'])){
       
         }
         
-        header("location: post.php?id=$id_post");
+        header("location: forum.php?id=$id_post");
     }
 
     if(isset($_POST['edit_comment'])){
@@ -134,15 +133,27 @@ if(!empty($_SESSION['user_status'])){
 
         if($resuut_select_comment['id']==$user_id||$_SESSION['user_status']==2||$resuut_select_post['id']==$user_id){
 
-            $sql_del_comment = "DELETE FROM comment WHERE id_comment='$id_comment'";
-            mysqli_query($connect,$sql_del_comment); // สั่งรันคำสั่ง sql    
+            $msg_comment = mysqli_real_escape_string($connect, $_POST['msg_comment']);    
+
+            if (empty($msg_comment)) {
+                array_push($errors, "Data is required");        
+            }
+
+            if (count($errors) == 0) {
+                $sql_edit_post = "UPDATE comment SET msg_post= '$msg_post'  WHERE id_comment = '$id_comment'";
+                mysqli_query($connect,$sql_edit_post); // สั่งรันคำสั่ง sql       
+            }
+            else{
+                array_pop($errors);
+            } 
       
         }
         
-        header("location: post.php?id=$id_post");
+        header("location: forum.php?id=$id_post");
     }
 
 }
+
 else{
     header('location: index.php');
 }
