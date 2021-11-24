@@ -18,6 +18,9 @@ if(!empty($_SESSION['user_status'])){
         if (count($errors) == 0) {
             $sql_create_post = "INSERT INTO post(id,title_post,msg_post) VALUES('$user_id','$title_post','$msg_post')";
             mysqli_query($connect,$sql_create_post); // สั่งรันคำสั่ง sql       
+        }
+        else{
+            array_pop($errors);
         } 
 
         header('location: index.php');
@@ -46,15 +49,49 @@ if(!empty($_SESSION['user_status'])){
 
         header('location: index.php');
     }
+
+    if(isset($_POST['edit_post'])){    
+        $id_post = $_POST['id_post'];
+
+        $sql_select_post = "SELECT id FROM post WHERE id_post='$id_post'";
+        $query_select_post = mysqli_query($connect,$sql_select_post);
+        $resuut_select_post = mysqli_fetch_assoc($query_select_postt);
+
+        if($resuut_select_post['id']==$user_id||$_SESSION['user_status']==2){           
+             
+            $title_post = mysqli_real_escape_string($connect, $_POST["title_post"]); 
+            $msg_post = mysqli_real_escape_string($connect, $_POST['msg_post']);    
+
+            if (empty($title_post) || empty($msg_post)) {
+                array_push($errors, "Data is required");        
+            }
+
+            if (count($errors) == 0) {
+                $sql_edit_post = "UPDATE post SET title_post = '$title_post', msg_post= '$msg_post'  WHERE id_post = '$id_post'";
+                mysqli_query($connect,$sql_edit_post); // สั่งรันคำสั่ง sql       
+            }
+            else{
+                array_pop($errors);
+            } 
+        }
+
+        header("location: post.php?id=$id_post");
+    }
     
     if (isset($_POST['comment_post'])) {        
         $id_post = $_POST['id_post'];
         $msg_comment = mysqli_real_escape_string($connect, $_POST["msg_comment"]);     
             
+        if (empty($msg_comment)) {
+            array_push($errors, "Data is required");        
+        }
+
         if (count($errors) == 0) {
             $sql_comment_post = "INSERT INTO comment(msg_comment,id,id_post) VALUES('$msg_comment','$user_id','$id_post')";
-            mysqli_query($connect,$sql_comment_post); // สั่งรันคำสั่ง sql
-             
+            mysqli_query($connect,$sql_comment_post); // สั่งรันคำสั่ง sql            
+        } 
+        else{
+            array_pop($errors);
         } 
 
         header("location: post.php?id=$id_post");
@@ -68,7 +105,7 @@ if(!empty($_SESSION['user_status'])){
         $query_select_comment = mysqli_query($connect,$sql_select_comment);
         $resuut_select_comment = mysqli_fetch_assoc($query_select_comment);
         $id_post = $resuut_select_comment['id_post'];
-        
+
         $sql_select_post = "SELECT id FROM post WHERE id_comment='$id_post'";
         $query_select_post = mysqli_query($connect,$sql_select_post);
         $resuut_select_post = mysqli_fetch_assoc($query_select_post);
@@ -82,6 +119,29 @@ if(!empty($_SESSION['user_status'])){
         
         header("location: post.php?id=$id_post");
     }
+
+    if(isset($_POST['edit_comment'])){
+        $id_comment = $_POST['id_comment'];
+
+        $sql_select_comment = "SELECT id,id_post FROM comment WHERE id_comment='$id_comment'";
+        $query_select_comment = mysqli_query($connect,$sql_select_comment);
+        $resuut_select_comment = mysqli_fetch_assoc($query_select_comment);
+        $id_post = $resuut_select_comment['id_post'];
+
+        $sql_select_post = "SELECT id FROM post WHERE id_comment='$id_post'";
+        $query_select_post = mysqli_query($connect,$sql_select_post);
+        $resuut_select_post = mysqli_fetch_assoc($query_select_post);
+
+        if($resuut_select_comment['id']==$user_id||$_SESSION['user_status']==2||$resuut_select_post['id']==$user_id){
+
+            $sql_del_comment = "DELETE FROM comment WHERE id_comment='$id_comment'";
+            mysqli_query($connect,$sql_del_comment); // สั่งรันคำสั่ง sql    
+      
+        }
+        
+        header("location: post.php?id=$id_post");
+    }
+
 }
 else{
     header('location: index.php');
