@@ -17,10 +17,10 @@ if(!empty($_SESSION['user_status'])){
 
         if (count($errors) == 0) {
             $sql_create_post = "INSERT INTO post(id,title_post,msg_post) VALUES('$user_id','$title_post','$msg_post')";
-            mysqli_query($connect,$sql_create_post); // สั่งรันคำสั่ง sql
-
-            header('location: index.php');
+            mysqli_query($connect,$sql_create_post); // สั่งรันคำสั่ง sql       
         } 
+
+        header('location: index.php');
     }
 
     if(isset($_POST['del_post'])){    
@@ -43,6 +43,7 @@ if(!empty($_SESSION['user_status'])){
             $sql_del_post = "DELETE FROM post WHERE id_post='$id_post'";
             mysqli_query($connect,$sql_del_post); // สั่งรันคำสั่ง sql    
         }
+
         header('location: index.php');
     }
     
@@ -66,16 +67,19 @@ if(!empty($_SESSION['user_status'])){
         $sql_select_comment = "SELECT id,id_post FROM comment WHERE id_comment='$id_comment'";
         $query_select_comment = mysqli_query($connect,$sql_select_comment);
         $resuut_select_comment = mysqli_fetch_assoc($query_select_comment);
-
+        $id_post = $resuut_select_comment['id_post'];
+        
         $sql_select_post = "SELECT id FROM post WHERE id_comment='$id_post'";
         $query_select_post = mysqli_query($connect,$sql_select_post);
         $resuut_select_post = mysqli_fetch_assoc($query_select_post);
 
         if($resuut_select_comment['id']==$user_id||$_SESSION['user_status']==2||$resuut_select_post['id']==$user_id){
 
-        $sql_del_comment = "DELETE FROM comment WHERE id_comment='$id_comment'";
-        mysqli_query($connect,$sql_del_comment); // สั่งรันคำสั่ง sql    
-
+            $sql_del_comment = "DELETE FROM comment WHERE id_comment='$id_comment'";
+            mysqli_query($connect,$sql_del_comment); // สั่งรันคำสั่ง sql    
+      
+        }
+        
         header("location: post.php?id=$id_post");
     }
 }
