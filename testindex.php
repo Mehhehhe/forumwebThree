@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <?php          
-    require "config.php";      
+    //require "config.php";      
     if(!empty($_SESSION['user_status'])){
 ?>  
 <body>
