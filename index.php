@@ -1,3 +1,7 @@
+<?php
+    require "dbconnect.php";
+    session_start();    
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +20,7 @@
     <input type="text" placeholder="Enter Email" name="email" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="password" required>
 
     <button type="submit" class="btn" name="user_login">Login</button>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
@@ -91,7 +95,7 @@
                 width: window.innerWidth,
                 height: window.innerHeight,
             }
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
             renderer.setSize(sizes.width, sizes.height);
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.domElement.setAttribute("id", "scence3Dobj");

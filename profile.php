@@ -1,3 +1,8 @@
+<?php
+    require "dbconnect.php";
+    session_start();
+    if(isset($_SESSION['status']) && !empty($_SESSION['status'])){
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -226,6 +231,10 @@
 
     .dropdown:hover .dropdown-content {display: block;}
 
-    .dropdown:hover .dropbtn {background-color: red;}
-</style>
 </html>
+<?php
+    }
+    else{
+        header("location: index.php");
+    }
+?>
