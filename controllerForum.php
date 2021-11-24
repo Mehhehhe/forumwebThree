@@ -1,7 +1,7 @@
 <?php 
 session_start();
 require "dbconnect.php";
-error_reporting(0);
+//error_reporting(0);
 $errors = array();
 if(!empty($_SESSION['user_status'])){
     $user_id = $_SESSION['user_id'];

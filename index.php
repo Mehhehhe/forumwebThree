@@ -2,7 +2,7 @@
 <?php
     require "dbconnect.php";
     session_start();    
-    error_reporting(0);
+    //error_reporting(0);
 ?>
 <html lang="en">
 <head>    
