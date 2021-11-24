@@ -3,7 +3,7 @@ session_start();
 require "dbconnect.php";
 require "config.php";   
 $errors = array();
-//error_reporting(0);
+error_reporting(0);
 
 if (isset($_POST['user_login'])) {
     $email = mysqli_real_escape_string($connect, $_POST['email']);
@@ -79,24 +79,22 @@ if(isset($_GET['code'])){
             $row2 = mysqli_fetch_assoc($result2);    
             $_SESSION['user_status'] = 1;  
             $_SESSION['user_id'] = $row2['id']; 
+            $_SESSION['user_first_name'] = $first_name;
+            $_SESSION['user_last_name'] = $last_name;
                 
         }
         else if (mysqli_num_rows($result) == 1) {             
-            $sql = "UPDATE users SET f_name = '$first_name', l_name = '$last_name', avatar = '$picture', password = '$token' WHERE email = '$email";
+            $sql = "UPDATE users SET avatar = '$picture', password = '$token' WHERE email = '$email";
             mysqli_query($connect,$sql); 
-            $query2 = "SELECT id,status FROM users WHERE email = '$email'";
+            $query2 = "SELECT id,f_name,l_name,status FROM users WHERE email = '$email'";
             $result2 = mysqli_query($connect, $query2);
             $row2 = mysqli_fetch_assoc($result2);  
             $_SESSION['user_status'] = $row2['status'];  
             $_SESSION['user_id'] = $row2['id'];  
-
+            $_SESSION['user_first_name'] = $row2['f_name'];
+            $_SESSION['user_last_name'] = $row2['l_name'];
         }
-        if(!empty($first_name)){
-            $_SESSION['user_first_name'] = $first_name;
-        }
-        if(!empty($last_name)){
-            $_SESSION['user_last_name'] = $last_name;
-        }
+ 
         if(!empty($email)){
             $_SESSION['user_email'] = $email;
             $e = explode("@", $email);    
@@ -128,5 +126,5 @@ echo $_SESSION['user_status'];
 echo "<br>picture : ";
 echo $_SESSION['user_picture'];
 
-header("location: index.php");
+//header("location: index.php");
 ?>

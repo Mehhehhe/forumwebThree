@@ -1,5 +1,5 @@
 <?php
-    error_reporting(-1);
+    error_reporting(0);
     //$servername = "localhost:3306";
     //$username = "root";
     //$password = "";
@@ -17,6 +17,6 @@
             //หรือย่อเป็น $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed");
         } 
         else{
-            echo "connected";
+            //echo "connected";
         }  
 ?>

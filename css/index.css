@@ -41,7 +41,7 @@ canvas{
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color: red;}   
+.dropdown:hover .dropbtn {background-color: rgb(97, 97, 97);}   
 
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
@@ -118,3 +118,33 @@ a.loginG ,a.loginG:hover ,a.loginG:visited{
     text-decoration: none;
 cursor: pointer;
 }    
+
+.btngg {
+    width: 300px;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    margin: 5px 0;
+    opacity: 0.85;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 20px;
+    text-decoration: none; /* remove underline from anchors */
+  }
+  
+  input:hover,
+  .btngg:hover {
+    opacity: 1;
+  }
+      
+  /* style the submit button */
+  input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  
