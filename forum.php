@@ -144,7 +144,7 @@
                      echo "<h4 class=\"media-heading\"></h4>";                     
                      echo "<p>".$resuut_select_comment['msg_comment']."</p>"; // Comment content
                      echo "<ul class=\"list-unstyled list-inline media-detail pull-left\">";
-                     echo "<li><i class=\"fa fa-calendar\"></i>".$resuut_select_comment['time_comment']."</li>"; // replace with timestamp
+                     echo "<li style=\"color: rgb(54, 54, 54);\"><i class=\"fa fa-calendar\"></i>".$resuut_select_comment['time_comment']."</li>"; // replace with timestamp
                      echo "</ul>";                     
                      echo "</div>";
                      echo "</div>";
