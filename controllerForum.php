@@ -13,7 +13,7 @@ if(!empty($_SESSION['user_status'])){
 
     if (isset($_POST['create_post'])) {
 
-        $title_post = ["title_post"]; 
+        $title_post = $_POST["title_post"]; 
         $msg_post = $_POST['msg_post'];    
        
         $sql_create_post = "INSERT INTO post(id,title_post,msg_post) VALUES('$user_id','$title_post','$msg_post')";     
@@ -120,8 +120,8 @@ if(!empty($_SESSION['user_status'])){
     if(isset($_POST['edit_comment'])){
         $id_comment = $_POST['id_comment'];
 
-       // echo "<br>id_comment : ";
-        //echo $id_comment;
+        echo "<br>id_comment : ";
+        echo $id_comment;
 
         $sql_select_comment = "SELECT id,id_post FROM comment WHERE id_comment='$id_comment'";
         $resuut_select_comment = $dbo->query("$sql_select_comment")->fetch();
@@ -129,8 +129,8 @@ if(!empty($_SESSION['user_status'])){
         $id_post = $resuut_select_comment['id_post'];
         $id = $resuut_select_comment['id'];
 
-        //echo "<br>id_user : ";
-        //echo $id;
+        echo "<br>id_user : ";
+        echo $id;
 
 
         if($id==$user_id||$_SESSION['user_status']==2){
@@ -144,7 +144,7 @@ if(!empty($_SESSION['user_status'])){
 
         //echo $sql_edit_comment;
         
-        //header("location: forum.php?id=$id_post");
+        header("location: forum.php?id=$id_post");
     }
 
 }

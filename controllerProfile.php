@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "dbconnect.php";
-error_reporting(0);
+//error_reporting(0);
 $errors = array();
 
 if (isset($_POST['change_name'])&&!empty($_SESSION['user_status'])) {
