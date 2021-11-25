@@ -116,7 +116,7 @@
                 <p class="likeCount" name="like_post"></p>
             </div>
             <div class="col-md-6">
-                <p class="creator" style="text-align:end;">
+                <p class="creator" style="text-align:end;"><i class="fa fa-calendar"></i>
                 <?php
                     echo $resuut_select_post['time_post'];
                 ?>

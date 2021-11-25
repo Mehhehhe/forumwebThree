@@ -131,7 +131,7 @@ if(!empty($_SESSION['user_status'])){
         $query_select_post = mysqli_query($connect,$sql_select_post);
         $resuut_select_post = mysqli_fetch_assoc($query_select_post);
 
-        if($resuut_select_comment['id']==$user_id||$_SESSION['user_status']==2||$resuut_select_post['id']==$user_id){
+        if($resuut_select_comment['id']==$user_id||$_SESSION['user_status']==2){
 
             $msg_comment = mysqli_real_escape_string($connect, $_POST['msg_comment']);    
 
