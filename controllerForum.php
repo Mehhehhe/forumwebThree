@@ -125,6 +125,9 @@ if(!empty($_SESSION['user_status'])){
     if(isset($_POST['del_comment'])){
         $id_comment = $_POST['id_comment'];
 
+        echo "<br>id_comment : ";
+        echo $id_comment;
+
         $sql_select_comment = "SELECT id,id_post FROM comment WHERE id_comment='$id_comment'";
         $query_select_comment = mysqli_query($connect,$sql_select_comment);
         $resuut_select_comment = mysqli_fetch_assoc($query_select_comment);

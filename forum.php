@@ -90,8 +90,8 @@
                                     echo $_GET['id'];
                                     echo "\">";
                                 ?>
-                            	<?php echo "<img src=\""; if(!empty($resuut_select_post['avatar'])){
-                                    echo $resuut_select_post['avatar'];
+                            	<?php echo "<img src=\""; if(!empty($_SESSION['user_picture'])){
+                                    echo $_SESSION['user_picture'];
                                 }
                                 else{
                                     echo "assets/images/user_icon_placeholder.png";  
@@ -117,16 +117,22 @@
                 <?php //Show Comments here!                    
                      echo "<div class=\"media\">";
                      echo "<ul class=\"list-unstyled list-inline media-detail pull-right\">";
-                     if($resuut_select_commentt['id']==$_SESSION['user_id']||$_SESSION['user_status']==2||$resuut_select_post['id']==$_SESSION['user_id']){
-                        if($resuut_select_post['id']==$_SESSION['user_id']){
-                            ?>
-                            <div class="btn_edit">
-                                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalCenter"">Edit</button>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter" style="background:#ff0000; border: none;">Delete</button>
+                     if($resuut_select_post['id']==$_SESSION['user_id']){
+                         ?>
+                         <div class="btn_edit">
+                            <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalCenter2"">Edit</button>
+                        </div>                              
+                          <?php
+                          }
+                        if($resuut_select_comment['id']==$_SESSION['user_id']||$_SESSION['user_status']==2){
+                            ?>                            
+                                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalCenter2"">Edit</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modaldel2" style="background:#ff0000; border: none;">Delete</button>
                             </div>
-                <?php
-                        }                     
-                     }
+                        <?php
+                        }                                                   
+                                           
+                     
                      echo "</ul>";
                      echo "<img src=\""; if(!empty($resuut_select_comment['avatar'])){
                         echo $resuut_select_comment['avatar'];
@@ -144,6 +150,80 @@
                      echo "</ul>";                     
                      echo "</div>";
                      echo "</div>";
+                     ?>
+                     <div class="container ">
+                        
+                        <div class="modal fade" id="modalCenter2" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLongTitle">Edit Comment</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="edit_comment" name="edit_comment" action="controllerForum.php" method="post">
+
+                                        <div class="form-group">
+                                                <?php
+                                                    echo "<input type=\"hidden\" name=\"id_comment\" value=\"";
+                                                    echo $resuut_select_comment['id_comment'];
+                                                    echo "\">";
+                                                ?>
+                                                </div>
+                                            <div class="form-group">
+                                                <label for="l_name">Content</label>                            
+                                                <div>
+                                                <textarea name="msg_comment" id="Edit forum content" cols="60" rows="10" placeholder="Write your content ..." required></textarea>
+                                                </div>                                                
+                                            </div>                                                                                       
+                                            <div style="margin-top: 1rem;">
+                                            <button type="submit" name="edit_comment" id="submitbn" data-dismiss="modal" class="btn btn-success">Submit</button>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        
+                        <div class="modal fade " id="modaldel2" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modaldel2" aria-hidden="true">
+                            <div class=" modal-dialog modal-dialog-centered ">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLongTitle">Delete Comment</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body ">   
+                                    <form id="del_comment" name="del_comment" action="controllerForum.php" method="post">
+                                            <div class="form-group">                                                
+                                                <?php
+                                                    echo "<input type=\"hidden\" name=\"id_comment\" value=\"";
+                                                    echo $resuut_select_comment['id_comment'];
+                                                    echo "\">";
+                                                ?>
+                                            </div>                                           
+                                                                           
+                                        <div class="row">    
+                                            <div class=" col-lg-1 col-sm-1"></div>
+                                            <div class=" col-lg-1 col-sm-1" style="margin-top: 1rem;">
+                                                <button type="submit" name="del_comment" id="submitbn" data-dismiss="modal" class="btn btn-success">Yes</button>
+                          
+                                            </div>          
+                                            <div class=" col-lg-7 col-sm-7"></div>                              
+                                            <div class=" col-lg-1 col-sm-1" style="margin-top: 1rem;">                                                
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>                                                
+                                            </div>                                            
+                                        </div>
+                                    </form> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                     <?php
                     }
                 ?>
 

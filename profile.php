@@ -1,5 +1,5 @@
 <?php
-    require "dbconnect.php"; 
+    //require "dbconnect.php"; 
     require "header.php";
     //error_reporting(0);
     if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
