@@ -1,5 +1,5 @@
 import {OrbitControls} from 'https://cdn.skypack.dev/@three-ts/orbit-controls';
-        import {GLTFLoader} from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
+import {GLTFLoader} from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
 
         let scene, camera, renderer, controls, cube;
         const objLoader = new THREE.OBJLoader();
@@ -9,25 +9,38 @@ import {OrbitControls} from 'https://cdn.skypack.dev/@three-ts/orbit-controls';
         var objects = [];
         var canvasBounds;
         var mouse = new THREE.Vector2();
+        var cameraTarget = new THREE.Vector3(3,4,4);
 
         function init() {
                 // scene
             scene = new THREE.Scene();
+            {
+              const color = 'lightblue';
+              const near = 1;
+              const far = 10;
+              scene.fog = new THREE.Fog(color, near, far);
+            }
             // camera
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, .1, 1000);
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, .1, 10);
             // renderer
             const sizes = {
                 width: window.innerWidth,
                 height: window.innerHeight,
             }
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha:true});
             renderer.setSize(sizes.width, sizes.height);
             renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCSoftShadowMap;
+            renderer.setClearColor(0x000000, 0);
             renderer.domElement.setAttribute("id", "scence3Dobj");
 
             document.body.appendChild(renderer.domElement);
             canvasBounds = renderer.domElement.getBoundingClientRect();
             // Flashlight
+            var ambLight = new THREE.AmbientLight(0xffffff, 0.2);
+            scene.add(ambLight);
+
             light = new THREE.PointLight( 0xffffff, 1, 100 );
             light.position.set( 1, 1, 4 );
             scene.add( light );
@@ -39,15 +52,33 @@ import {OrbitControls} from 'https://cdn.skypack.dev/@three-ts/orbit-controls';
             // Orbit Control
             controls = new OrbitControls(camera);
             controls.minDistance = 3;
-            controls.maxDistance = 5;
+            controls.maxDistance = 10;
             controls.enableRotate = false;
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.25;
+            controls.zoomSpeed = 1.2;
             // Obj loader *** import obj file
             objLoader.load(
                 './model/proj01.obj',
                 function (object){
+                    object.traverse(function(child){
+                      if(child instanceof THREE.Mesh){
+                        child.material = new THREE.MeshStandardMaterial(
+                          {
+                            color: 0xb4eeb4,
+                            shading: THREE.FlatShading,
+                            metalness: 0,
+                            roughness: 0.8
+                          }
+                        );
+                      }
+                    });
                     object.position.x = 0;
                     object.position.y = 0;
                     object.scale.set(0.25,0.25,0.25);
+                    object.receiveShadow = false;
+                    object.castShadow = true;
+
                     scene.add(object);             
                 }
             );
@@ -75,9 +106,10 @@ import {OrbitControls} from 'https://cdn.skypack.dev/@three-ts/orbit-controls';
                 objects.push(root);
               }
             );
+
             // Fixed Camera Position
             camera.position.x = 15;
-            camera.position.y = 20;
+            camera.position.y = 22;
             camera.position.z = 26;
             // Fixed camera rotation
             
@@ -102,6 +134,7 @@ import {OrbitControls} from 'https://cdn.skypack.dev/@three-ts/orbit-controls';
             console.log(intersects);
             if(intersects.length > 0){
               intersects[0].object.material.color.setHex(Math.random() * 0xffffff);
+              
               openForm();
             }
           }
@@ -124,6 +157,7 @@ import {OrbitControls} from 'https://cdn.skypack.dev/@three-ts/orbit-controls';
             light.position.x = 0;
             light.position.y = 1;
             light.position.z = 0;
+            camera.position.lerp(cameraTarget,0.01);
             renderer.render(scene, camera);
         }
 
