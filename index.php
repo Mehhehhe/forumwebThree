@@ -95,8 +95,7 @@
             </div>    
                        
             <div class="col-lg-6" style="text-align:end;">
-                    <?php 
-                    echo "<b>Create By : ".$resuut_select_post['f_name']." ".$resuut_select_post['l_name']." </b> ";
+                    <?php                     
                     echo "<img src=\""; if(!empty($resuut_select_post['avatar'])){
                         echo $resuut_select_post['avatar'];
                     }
@@ -115,11 +114,13 @@
         ?>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <i class="fa fa-thumbs-up" style="position:relative; "> <?php
-                          echo $resuut_select_post['like_post'];
-                      ?></i>
-                <p class="likeCount" name="like_post"></p>
+        <div class="col-md-6">
+            <p class="likeCount" name="like_post">               
+                
+                <?php 
+                    echo "<b> Create By : ".$resuut_select_post['f_name']." ".$resuut_select_post['l_name']."</b>";      
+                    ?>             
+                    </p>
             </div>
             <div class="col-md-6">
                 <p class="creator" style="text-align:end;"><i class="fa fa-calendar"></i>

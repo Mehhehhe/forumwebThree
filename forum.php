@@ -1,7 +1,7 @@
 <?php
     require "dbconnect.php";
     require "header.php";
-    //error_reporting(0);
+    error_reporting(0);
     if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])&& isset($_GET['id'])){
 ?>
 <title>Post | Website</title>
@@ -53,10 +53,7 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-            <p class="likeCount" name="like_post">
-                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="position:relative; "> <?php
-                          echo $resuut_select_post['like_post'];
-                      ?></i>
+            <p class="likeCount" name="like_post">               
                 
                 <?php 
                     echo "<b> Create By : ".$resuut_select_post['f_name']." ".$resuut_select_post['l_name']."</b>";      
@@ -117,7 +114,7 @@
                 <?php //Show Comments here!                    
                      echo "<div class=\"media\">";
                      echo "<ul class=\"list-unstyled list-inline media-detail pull-right\">";
-                     if($resuut_select_post['id']==$_SESSION['user_id']){
+                     if($resuut_select_post['id']==$_SESSION['user_id']&&$resuut_select_comment['id']!=$_SESSION['user_id']&&$_SESSION['user_status']!=2){
                          ?>
                          <div class="btn_edit">
                             <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalCenter2"">Edit</button>
@@ -125,7 +122,8 @@
                           <?php
                           }
                         if($resuut_select_comment['id']==$_SESSION['user_id']||$_SESSION['user_status']==2){
-                            ?>                            
+                            ?>         
+                            <div class="btn_edit">                   
                                 <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalCenter2"">Edit</button>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modaldel2" style="background:#ff0000; border: none;">Delete</button>
                             </div>
