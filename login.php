@@ -3,52 +3,35 @@ session_start();
 require "dbconnect.php";
 require "config.php";   
 $errors = array();
-error_reporting(0);
+//error_reporting(0);
 
 if (isset($_POST['user_login'])) {
-    $email = mysqli_real_escape_string($connect, $_POST['email']);
-    $password = mysqli_real_escape_string($connect, $_POST['password']);
 
-    if (empty($email)) {
-        array_push($errors, "Email is required");
+    $password = md5($_POST['password']);
+
+    $query = "SELECT * FROM users WHERE email = '".$_POST['email']."' AND password = '$password' ";
+    $row2 = $dbo->query("$query"); 
+    $count = $row2->fetchColumn(); 
+    $row = $dbo->query("$query")->fetch();   
+    
+    if ($count == 1) {
+        $_SESSION['user_email'] = $row['email'];      
+        $_SESSION['user_first_name'] = $row['f_name'];   
+        $_SESSION['user_last_name'] = $row['l_name'];          
+        $_SESSION['user_status'] = $row['status'];
+        $_SESSION['user_picture'] = $row['avatar'];
+        $_SESSION['user_id'] = $row['id'];   
+        $e = explode("@", $row['email']);    
+        $_SESSION['user_email_name'] = $e[0];
+        if ($_SESSION['user_email_name']==""){
+            $_SESSION['user_email_name'] = $row['email'];
+        }           
+                            
+        //header("location: index.php?error=1");                     
     }
 
-    if (empty($password)) {
-        array_push($errors, "Password is required");
-    }
-
-    if (count($errors) == 0) {
-        $password = md5($password);
-
-        $query = "SELECT * FROM users WHERE email = '$email' AND password = '$password' ";
-        $result = mysqli_query($connect, $query);
-        $row = mysqli_fetch_assoc($result);
-
-        if (mysqli_num_rows($result) == 1) {
-            $_SESSION['user_email'] = $email;      
-            $_SESSION['user_first_name'] = $row['f_name'];   
-            $_SESSION['user_last_name'] = $row['l_name'];          
-            $_SESSION['user_status'] = $row['status'];
-            $_SESSION['user_picture'] = $row['avatar'];
-            $_SESSION['user_id'] = $row['id'];   
-            $e = explode("@", $email);    
-            $_SESSION['user_email_name'] = $e[0];
-            if ($_SESSION['user_email_name']==""){
-                $_SESSION['user_email_name'] = $email;
-            }           
-                              
-            header("location: index.php?error=1");                     
-        }
+        //header("location: index.php?error=2");             
         
-        else {
-            array_push($errors, "Wrong Email or Password");   
-            header("location: index.php?error=2");                          
-        }
-    }
-    else {
-        array_push($errors, "Email & Password is required");  
-        header("location: index.php?error=2");               
-    }
 }
 
 if(isset($_GET['code'])){

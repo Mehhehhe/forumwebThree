@@ -1,8 +1,6 @@
 <?php
-    error_reporting(0);
-    //$servername = "localhost:3306";
-    //$username = "root";
-    //$password = "";
+    //error_reporting(0);
+    /*
     $servername = "34.124.243.161";
     $username = "ite";
     $password = "ite@@#2021";
@@ -19,4 +17,20 @@
         else{
             //echo "connected";
         }  
+    */
+    $host_name = "34.124.243.161";
+    $database = "project"; // Change your database name
+    $username = "ite";          // Your database user id 
+    $password = "ite@@#2021";          // Your password
+    $dsn = 'mysql:dbname=project;host=34.124.243.161;port=3366;charset=utf8';
+
+    //////// Do not Edit below /////////
+    try {
+    $dbo = new PDO($dsn, $username, $password);
+    } catch (PDOException $e) {
+    print "Error!: " . $e->getMessage() . "<br/>";
+    echo "Connected fail!";
+    die();
+    }
+    //echo "DB connected !!";
 ?>

@@ -16,9 +16,8 @@
 <div class="container" style="margin-bottom:100px;">
     
     <?php
-          $sql_select_post = "SELECT * FROM post ,users WHERE id_post = '".$_GET['id']."'AND users.id = post.id";
-          $query_select_post = mysqli_query($connect,$sql_select_post);
-          $resuut_select_post = mysqli_fetch_assoc($query_select_post);        
+          $sql_select_post = "SELECT * FROM post ,users WHERE id_post = '".$_GET['id']."'AND users.id = post.id"; 
+          $resuut_select_post = $dbo->query("$sql_select_post")->fetch();      
       ?>
 <!---Example post -->
     <div class="row" id="text-content" style="top:100px;width:100%;">
@@ -105,9 +104,9 @@
                 </form>
                 
                 <?php
-                    $sql_select_comment = "SELECT * FROM comment , users WHERE comment.id_post = '".$_GET['id']."' AND users.id = comment.id";
-                    $query_select_comment = mysqli_query($connect,$sql_select_comment);
-                    while($resuut_select_comment = mysqli_fetch_assoc($query_select_comment)){
+                    $sql_select_comment = "SELECT * FROM comment , users WHERE comment.id_post = '".$_GET['id']."' AND users.id = comment.id";                    
+                    $query_select_comment = $dbo->query("$sql_select_comment")->fetchAll();                    
+                    foreach ($query_select_comment as $resuut_select_comment) {
                         
                 ?>
                 <!--<h3><?php //numbers of comments ?> Comments</h3>-->

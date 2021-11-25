@@ -74,10 +74,8 @@
 
       <?php
           $sql_select_post = "SELECT * FROM post,users WHERE users.id = post.id ORDER BY time_post DESC";
-          $query_select_post = mysqli_query($connect,$sql_select_post);
-          while($resuut_select_post = mysqli_fetch_assoc($query_select_post)){
-
-          
+          $query_select_post = $dbo->query("$sql_select_post")->fetchAll();          
+          foreach ($query_select_post as $resuut_select_post) {                          
       ?>
     
     <a href="forum.php?id=<?php echo $resuut_select_post['id_post'];?>" style="text-decoration: none; cursor: pointer; color: black;">
