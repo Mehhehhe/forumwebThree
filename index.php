@@ -215,7 +215,17 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" >
         <div class="container">        
           <a class="navbar-brand" href="#" style="font-family: 'Roboto Mono', monospace;"><img src="./assets/images/logo.png" alt="" width="50px" height="50px"> K-DIT</a>
-        </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse ms-auto justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav" style="cursor: pointer;">
+              <li class="nav-item">
+                <a class="nav-link" id="myForm" onclick="openForm()">Sign In</a>
+              </li>
+            </ul>            
+          </div>
+        </div>        
       </nav>
       <script type="module" src="js/index.js"></script>      
 <?php         
@@ -255,11 +265,24 @@
 <script src='https://threejs.org/examples/js/controls/TrackballControls.js'></script>
 <script src='https://mamboleoo.be/learnThree/demos/OBJLoader.js'></script>
     <script>
+      var openPopUp = false;
       function closeForm() {
           document.getElementById("myForm").style.display = "none";
+          openPopUp = false;
+      }
+      function openForm() {
+        
+        if(openPopUp == true){
+          document.getElementById("myForm").style.display = "none";
+          openPopUp = false;
+        }
+        else{
+          document.getElementById("myForm").style.display = "block";
+          openPopUp = true;
+        }  
       }
       function myFunction(x) {
           x.classList.toggle("fa-thumbs-down");
       }      
-    </script>
+    </script>    
 </html>
