@@ -1,7 +1,6 @@
 <title>Home | Website</title>
 <?php
-    require "dbconnect.php";
-    session_start();        
+      
     error_reporting(0);
 ?>
 <html lang="en">
@@ -24,159 +23,7 @@
 </head>
 <?php          
     require "config.php";      
-    if(!empty($_SESSION['user_status'])){
-?>  
-<body>
-<img src="./assets/images/pawel-czerwinski-d5TBzrddHMk-unsplash.jpg" alt="">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" >
-
-        <div class="container">
-          <a class="navbar-brand" href="#" style="font-family: 'Roboto Mono', monospace;">K-DIT</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse ms-auto justify-content-end" id="navbarSupportedContent">            
-            <ul class="navbar-nav">
-              <li class="nav-item">
-              <div class="dropdown">
-                <button class="dropbtn">
-                  <img src="<?php if(!empty($_SESSION['user_picture'])){
-                      echo $_SESSION['user_picture'];
-                  }
-                  else{
-                      echo "assets/images/user_icon_placeholder.png";  
-                  }
-                  ?>
-                    " alt="" width="30px" height="30px" style="border-radius:100%;">
-                  <?php
-                      echo $_SESSION['user_email_name'];
-                  ?>
-                </button>
-                <div class="dropdown-content">
-                  <a href="profile.php">Profile</a>
-                  <a href="logout.php">Log Out</a>
-                </div>
-              </div>
-              </li>
-            </ul>
-            
-          </div>
-        </div>
-      <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalCenter" style="position:fixed; right:20; bottom:20; width:100px; height:100px; border-radius:100%; font-size:40px;background:black;"> &plus;</button>
-     
-      </div>
-      </nav>
-      <section class="main frame" style="padding-top:100;">
-      <div class="container" style="margin-bottom:100px;">
-      <div class="row">
-        <p class="latest header" style="font-size: 36px; dashed black; text-align: center; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);">Latest</p>
-      </div>
-
-      <?php
-          $sql_select_post = "SELECT * FROM post,users WHERE users.id = post.id ORDER BY time_post DESC";
-          $query_select_post = mysqli_query($connect,$sql_select_post);
-          while($resuut_select_post = mysqli_fetch_assoc($query_select_post)){
-
-          
-      ?>
-    
-    <a href="forum.php?id=<?php echo $resuut_select_post['id_post'];?>" style="text-decoration: none; cursor: pointer; color: black;">
-      <div class="row" id="text-content" style="top:50px;width:100%;">
-        <div class="row" style="margin-bottom:30px;">
-            <div class="col-lg-6">
-                <p class="forum_head">
-                    <h1 class="forum_name" id="forum_topic_name">
-                      <?php
-                          echo $resuut_select_post['title_post'];
-                      ?>
-                    </h1>
-                </p>
-                
-            </div>    
-                       
-            <div class="col-lg-6" style="text-align:end;">
-                    <?php 
-                    echo "<b>Create By : ".$resuut_select_post['f_name']." ".$resuut_select_post['l_name']." </b> ";
-                    echo "<img src=\""; if(!empty($resuut_select_post['avatar'])){
-                        echo $resuut_select_post['avatar'];
-                    }
-                    else{
-                        echo "assets/images/user_icon_placeholder.png";  
-                    }
-                    
-                    echo "\" alt=\"profile img\" width=\"90px\" height=\"auto\" style=\"border-radius:100%\"> ".$resuut_select_comment['f_name']." ".$resuut_select_comment['l_name']; // replace with profile picture              
-                    ?>
-                </div>
-           
-        </div>
-        <div class="content" id="posted_content">
-        <?php
-            echo $resuut_select_post['msg_post'];
-        ?>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <i class="fa fa-thumbs-up" style="position:relative; "> <?php
-                          echo $resuut_select_post['like_post'];
-                      ?></i>
-                <p class="likeCount" name="like_post"></p>
-            </div>
-            <div class="col-md-6">
-                <p class="creator" style="text-align:end;"><i class="fa fa-calendar"></i>
-                <?php
-                    echo $resuut_select_post['time_post'];
-                ?>
-                </p>
-            </div>
-        </div>       
-        
-      </div>
-      </a>
-      <br><br>
-      <?php
-          }
-      ?>
-      <div class="col-lg-4">
-    <div class="container ">
-    
-    <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLongTitle">Create post</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="form_edit" name="form_edit" action="controllerForum.php" method="post">
-                        <div class="form-group">
-                            <label for="f_name">Title</label>
-                                <input type="text" class="form-control" id="username" placeholder="topic" name="title_post" required> 
-                        </div>
-                        <div class="form-group">
-                            <label for="l_name">Content</label>                            
-                            <div>
-                              <textarea name="msg_post" id="Edit forum content" cols="60" rows="10" placeholder="Write your content ..." required></textarea>
-                            </div>
-                            
-                        </div>                        
-                        <div style="margin-top: 1rem;">
-                        <button type="submit" name="create_post" id="submitbn" data-dismiss="modal" class="btn btn-success">Submit</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-      
-<?php           
-    }
-    else{
-?>  
+?>
 <body>  
   <div class="welcome" style="position:absolute; width:50%; height:300px; margin-top:10%; padding-left:200px;font-family: 'Roboto Mono', monospace;color:white;">
     <div class="row">
@@ -211,8 +58,7 @@
       </nav>
       <script type="module" src="js/index.js"></script>      
 <?php         
-    }
-    if($_GET['error']==1){
+       if($_GET['error']==1){
       echo '<script type="text/javascript">';
       echo ' alert("Login Complete!!"); ';  //not showing an alert box.
       echo '</script>';
