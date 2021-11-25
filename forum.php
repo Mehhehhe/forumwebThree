@@ -29,7 +29,7 @@
                     <?php
                           echo $resuut_select_post['title_post'];
                     ?>
-                    </h1>
+                    </h1>                    
                 </p>
                 
             </div>
@@ -39,7 +39,7 @@
             <div class="col-lg-6" style="text-align:end;">
                 <div class="btn_edit">
                      <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalCenter" style="background:green; border: none;">Edit</button>
-                     <button type="button" class="btn btn-primary" data-bs-toggle="modal2" data-bs-target="#modalCenter" style="background:#ff0000; border: none;">Delete</button>
+                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modaldel1" style="background:#ff0000; border: none;">Delete</button>
                 </div>
             </div>
             <?php
@@ -53,10 +53,15 @@
         </div>
         <div class="row">
             <div class="col-md-6">
+            <p class="likeCount" name="like_post">
                 <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="position:relative; "> <?php
                           echo $resuut_select_post['like_post'];
                       ?></i>
-                <p class="likeCount" name="like_post"></p>
+                
+                <?php 
+                    echo "<b> Create By : ".$resuut_select_post['f_name']." ".$resuut_select_post['l_name']."</b>";      
+                    ?>             
+                    </p>
             </div>
             <div class="col-md-6">
                 <p class="creator" style="text-align:end;"><i class="fa fa-calendar"></i>
@@ -112,7 +117,7 @@
                             ?>
                             <div class="btn_edit">
                                 <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalCenter"">Edit</button>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal2" data-bs-target="#modalCenter" style="background:#ff0000; border: none;">Delete</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter" style="background:#ff0000; border: none;">Delete</button>
                             </div>
                             <?php
                         }                     
@@ -125,7 +130,7 @@
                         echo "assets/images/user_icon_placeholder.png";  
                     }
                     
-                     echo "\" alt=\"profile img\" width=\"40px\" height=\"auto\" style=\"border-radius:100%\"> ".$resuut_select_comment['f_name']." ".$resuut_select_comment['l_name']; // replace with profile picture
+                     echo "\" alt=\"profile img\" width=\"40px\" height=\"auto\" style=\"border-radius:100%\"> <b>".$resuut_select_comment['f_name']." ".$resuut_select_comment['l_name']."</b>"; // replace with profile picture
                      echo "<div class=\"media-body\">";
                      echo "<h4 class=\"media-heading\"></h4>";                     
                      echo "<p>".$resuut_select_comment['msg_comment']."</p>"; // Comment content
@@ -149,43 +154,29 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="modalLongTitle">Edit Profile</h5>
+                                        <h5 class="modal-title" id="modalLongTitle">Edit Post</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form id="form_edit" name="form_edit" action="controllerProfile.php" method="post">
-                                            <div class="form-group">
-                                                <label for="f_name">Firstname</label>
+                                        <form id="edit_post" name="edit_post" action="controllerForum.php" method="post">
+
+                                        <div class="form-group">
                                                 <?php
-                                                    echo "<input type=\"text\" class=\"form-control\" id=\"username\"";
-                                                    echo " placeholder=\"".$_SESSION['user_first_name']."\"";
-                                                    echo " name=\"firstname\" required>";
+                                                    echo "<input type=\"hidden\" name=\"id_post\" value=\"";
+                                                    echo $_GET['id'];
+                                                    echo "\">";
                                                 ?>
+                                                <label for="f_name">Title</label>
+                                                    <input type="text" class="form-control" id="username" placeholder="topic" name="title_post" required> 
                                             </div>
                                             <div class="form-group">
-                                                <label for="l_name">Surname</label>
-                                                <?php
-                                                    echo "<input type=\"text\" class=\"form-control\" id=\"lastname\"";
-                                                    echo " placeholder=\"".$_SESSION['user_last_name']."\"";
-                                                    echo " name=\"lastname\" required>";
-                                                ?>
-                                            </div>
-                                            <?php
-                                               if($_SESSION['user_status']!=1) {
-                                            ?>
-                                            <div class="form-group">
-                                                <label for="password">Password</label>
-                                                <?php
-                                                    echo "<input type=\"password\" class=\"form-control\" id=\"password\"";
-                                                    echo " placeholder=\"**********\"";
-                                                    echo " name=\"password\" required>";
-                                                ?>
-                                            </div>
-                                            <?php
-                                               }
-                                            ?>
+                                                <label for="l_name">Content</label>                            
+                                                <div>
+                                                <textarea name="msg_post" id="Edit forum content" cols="60" rows="10" placeholder="Write your content ..." required></textarea>
+                                                </div>                                                
+                                            </div>                                                                                       
                                             <div style="margin-top: 1rem;">
-                                            <button type="submit" name="change_name" id="submitbn" data-dismiss="modal" class="btn btn-success">Submit</button>
+                                            <button type="submit" name="edit_post" id="submitbn" data-dismiss="modal" class="btn btn-success">Submit</button>
                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                             </div>
                                         </form>
@@ -197,6 +188,40 @@
                             </div>
                         </div>
                         </div>
+                        
+                        <div class="modal fade " id="modaldel1" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modaldel1" aria-hidden="true">
+                            <div class=" modal-dialog modal-dialog-centered ">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLongTitle">Delete Post</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body ">   
+                                    <form id="del_post" name="del_post" action="controllerForum.php" method="post">
+                                            <div class="form-group">                                                
+                                                <?php
+                                                    echo "<input type=\"hidden\" name=\"id_post\" value=\"";
+                                                    echo $_GET['id'];
+                                                    echo "\">";
+                                                ?>
+                                            </div>                                           
+                                                                           
+                                        <div class="row">    
+                                            <div class=" col-lg-1 col-sm-1"></div>
+                                            <div class=" col-lg-1 col-sm-1" style="margin-top: 1rem;">
+                                                <button type="submit" name="del_post" id="submitbn" data-dismiss="modal" class="btn btn-success">Yes</button>
+                          
+                                            </div>          
+                                            <div class=" col-lg-7 col-sm-7"></div>                              
+                                            <div class=" col-lg-1 col-sm-1" style="margin-top: 1rem;">                                                
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>                                                
+                                            </div>                                            
+                                        </div>
+                                    </form> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
 </section> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>

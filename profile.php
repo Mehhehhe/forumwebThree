@@ -36,7 +36,7 @@
                     <div class="col-lg-9" style="margin-top:20px;">
                         <p class="user">Username</p>
                         <?php
-                            echo "<input type=\"text\" placeholder=\"";
+                            echo "<input type=\"text\" value=\"";
                             echo $_SESSION['user_email_name'];
                             echo "\" name=\"usernameBox\" id=\"usernameBox\" disabled=\"disabled\">";
                         ?>
@@ -48,7 +48,7 @@
                     <div class="col-lg-9" style="margin-top:10px;">
                         <p class="user">Email<span class="transCT">-----</span></p>
                         <?php
-                            echo "<input type=\"text\" placeholder=\"";
+                            echo "<input type=\"text\" value=\"";
                             echo $_SESSION['user_email'];
                             echo "\" name=\"useremailBox\" id=\"useremailBox\" disabled=\"disabled\">";
                         ?>
@@ -58,7 +58,7 @@
                     <div class="col-lg-9" style="margin-top:10px;">
                         <p class="user">Firstname</p>
                         <?php
-                            echo "<input type=\"text\" placeholder=\"";
+                            echo "<input type=\"text\" value=\"";
                             echo $_SESSION['user_first_name'];
                             echo "\" name=\"useremailBox\" id=\"useremailBox\" disabled=\"disabled\">";
                         ?>
@@ -68,8 +68,23 @@
                     <div class="col-lg-9" style="margin-top:10px;">
                         <p class="user">Lastname</p>
                         <?php
-                            echo "<input type=\"text\" placeholder=\"";
+                            echo "<input type=\"text\" value=\"";
                             echo $_SESSION['user_last_name'];
+                            echo "\" name=\"useremailBox\" id=\"useremailBox\" disabled=\"disabled\">";
+                        ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9" style="margin-top:10px;">
+                        <p class="user">Status<span class="transCT">----</span></p>
+                        <?php
+                            echo "<input type=\"text\" value=\"";
+                            if($_SESSION['user_status']==2){
+                                echo "admin";
+                            }
+                            else{
+                                echo "user";
+                            }
                             echo "\" name=\"useremailBox\" id=\"useremailBox\" disabled=\"disabled\">";
                         ?>
                     </div>

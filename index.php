@@ -96,7 +96,7 @@
                        
             <div class="col-lg-6" style="text-align:end;">
                     <?php 
-                    echo "Create By : ".$resuut_select_post['f_name']." ".$resuut_select_post['l_name']." ";
+                    echo "<b>Create By : ".$resuut_select_post['f_name']." ".$resuut_select_post['l_name']." </b> ";
                     echo "<img src=\""; if(!empty($resuut_select_post['avatar'])){
                         echo $resuut_select_post['avatar'];
                     }
@@ -172,23 +172,6 @@
         </div>
     </div>
 </div>
-
-<button type="button" class="btn btn-primary" onclick="openPost()" style="position:fixed; right:20; bottom:20; width:100px; height:100px; border-radius:100%; font-size:40px;background:black;"> &plus; </button>
-        <div class="form-popup aligns-items-center justify-content-center" id="myForm" style="z-index: 1000; position:absolute; background:white; width:50%; box-shadow:2px 2px 12px rgba(0,0,0,0.2); margin-top:100px; left:25%;">
-      <form action="controllerForum.php" method="post" style="width:80%;padding-left:100px;">
-          <div class="row">
-              <label for="title_post">Topic</label>
-              <input type="text" name="title_post" id="topic" placeholder="Topic">
-          </div>
-          <div class="row">
-              <label for="msg_post">Content</label>
-              <textarea name="msg_post" id="Edit forum content" cols="30" rows="10" placeholder="Write your content ..."></textarea>
-          </div>
-          
-          <button type="submit" id="createPostButton" name="create_post">POST</button>
-          <button type="button" onclick="closePost()">Cancel</button>
-      </form>
- </section>  
       
 <?php           
     }

@@ -4,7 +4,13 @@ require "dbconnect.php";
 //error_reporting(0);
 $errors = array();
 if(!empty($_SESSION['user_status'])){
+
     $user_id = $_SESSION['user_id'];
+    echo "<br>user_id : ";
+    echo $user_id;
+    echo "<br>user_status : ";
+    echo $_SESSION['user_status'];
+    echo "<br>";
 
     if (isset($_POST['create_post'])) {
 
@@ -36,9 +42,12 @@ if(!empty($_SESSION['user_status'])){
     if(isset($_POST['del_post'])){    
         $id_post = $_POST['id_post'];
 
+        //echo "<br>id_post : ";
+        //echo $id_post;
+
         $sql_select_post = "SELECT id FROM post WHERE id_post='$id_post'";
         $query_select_post = mysqli_query($connect,$sql_select_post);
-        $resuut_select_post = mysqli_fetch_assoc($query_select_postt);
+        $resuut_select_post = mysqli_fetch_assoc($query_select_post);
 
         if($resuut_select_post['id']==$user_id||$_SESSION['user_status']==2){            
             $sql_select_comment = "SELECT id_comment FROM comment WHERE id_post='$id_post'";
@@ -48,11 +57,17 @@ if(!empty($_SESSION['user_status'])){
                 $id_comment = $resuut_select_comment['id_comment'];
                 $sql_del_comment = "DELETE FROM comment WHERE id_comment='$id_comment'";
                 mysqli_query($connect,$sql_del_comment); // สั่งรันคำสั่ง sql    
+
+                //echo $sql_del_comment;
+                //echo "<br>";
             }   
 
             $sql_del_post = "DELETE FROM post WHERE id_post='$id_post'";
             mysqli_query($connect,$sql_del_post); // สั่งรันคำสั่ง sql    
         }
+
+        //echo "<br>";
+        //echo $sql_del_post;        
 
         header('location: index.php');
     }
@@ -60,9 +75,12 @@ if(!empty($_SESSION['user_status'])){
     if(isset($_POST['edit_post'])){    
         $id_post = $_POST['id_post'];
 
+        //echo "<br>id_post : ";
+        //echo $id_post;
+
         $sql_select_post = "SELECT id FROM post WHERE id_post='$id_post'";
         $query_select_post = mysqli_query($connect,$sql_select_post);
-        $resuut_select_post = mysqli_fetch_assoc($query_select_postt);
+        $resuut_select_post = mysqli_fetch_assoc($query_select_post);
 
         if($resuut_select_post['id']==$user_id||$_SESSION['user_status']==2){           
              

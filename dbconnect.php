@@ -3,7 +3,7 @@
     //$servername = "localhost:3306";
     //$username = "root";
     //$password = "";
-    $servername = "34.124.243.161:3366";
+    $servername = "34.124.243.161";
     $username = "ite";
     $password = "ite@@#2021";
     $dbname = "project";

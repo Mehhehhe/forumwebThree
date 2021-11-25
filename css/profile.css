@@ -157,3 +157,7 @@ a.loginG ,a.loginG:hover ,a.loginG:visited{
     box-shadow: 0 8px 16px #fff;
   }
 }
+
+input[type=text]{
+  color: black;
+}
