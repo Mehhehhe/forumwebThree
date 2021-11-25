@@ -82,7 +82,7 @@
       </div>
 
       <?php
-          $sql_select_post = "SELECT * FROM post ORDER BY time_post DESC";
+          $sql_select_post = "SELECT * FROM post,users WHERE users.id = post.id ORDER BY time_post DESC";
           $query_select_post = mysqli_query($connect,$sql_select_post);
           while($resuut_select_post = mysqli_fetch_assoc($query_select_post)){
 
@@ -101,7 +101,22 @@
                     </h1>
                 </p>
                 
-            </div>            
+            </div>    
+                       
+            <div class="col-lg-6" style="text-align:end;">
+                    <?php 
+                    echo "Create By : ".$resuut_select_post['f_name']." ".$resuut_select_post['l_name']." ";
+                    echo "<img src=\""; if(!empty($resuut_select_post['avatar'])){
+                        echo $resuut_select_post['avatar'];
+                    }
+                    else{
+                        echo "assets/images/user_icon_placeholder.png";  
+                    }
+                    
+                    echo "\" alt=\"profile img\" width=\"90px\" height=\"auto\" style=\"border-radius:100%\"> ".$resuut_select_comment['f_name']." ".$resuut_select_comment['l_name']; // replace with profile picture              
+                    ?>
+                </div>
+           
         </div>
         <div class="content" id="posted_content">
         <?php

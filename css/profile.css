@@ -115,6 +115,8 @@ a.loginG ,a.loginG:hover ,a.loginG:visited{
 
 .dropdown:hover .dropdown-content {display: block;}
 
+.dropdown:hover .dropbtn {background-color: rgb(97, 97, 97);}   
+
 .boxdiv{
     background-color: #c9c9c9;
     padding-bottom: 10px;

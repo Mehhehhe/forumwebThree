@@ -31,10 +31,12 @@
             </div>
             <?php
                 if($resuut_select_post['id']==$_SESSION['user_id']||$_SESSION['user_status']==2){
-            ?>
+            ?>           
             <div class="col-lg-6" style="text-align:end;">
-                <button type="button" id="submitButton" class="btn btn-normal pull-right" name="delete_post" style="background:#ff0000;">Delete</button>
-                <button type="button" id="submitButton" class="btn btn-normal pull-right" name="edit_post" style="background:green; margin-right:20px;" onclick="editPost()">Edit</button>              
+                <div class="btn_edit">
+                     <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalCenter" style="background:green; border: none;">Edit</button>
+                     <button type="button" class="btn btn-primary" data-bs-toggle="modal2" data-bs-target="#modalCenter" style="background:#ff0000; border: none;">Delete</button>
+                </div>
             </div>
             <?php
                 }
@@ -74,7 +76,15 @@
                     <fieldset>
                         <div class="row">
                             <div class="col-sm-3 col-lg-2 hidden-xs">
-                            	<?php //user profile picture?>
+                            	<?php echo "<img src=\""; if(!empty($resuut_select_post['avatar'])){
+                                    echo $resuut_select_post['avatar'];
+                                }
+                                else{
+                                    echo "assets/images/user_icon_placeholder.png";  
+                                }
+                                
+                                echo "\" alt=\"profile img\" width=\"90px\" height=\"auto\" style=\"border-radius:100%\"> ".$resuut_select_comment['f_name']." ".$resuut_select_comment['l_name']; // replace with profile picture
+                                ?>
                             </div>
                             <div class="form-group col-xs-12 col-sm-9 col-lg-10">
                                 <textarea class="form-control" name="msg_comment" id="message" placeholder="Your message" required=""></textarea>
@@ -92,27 +102,32 @@
                 <!--<h3><?php //numbers of comments ?> Comments</h3>-->
                 <?php //Show Comments here!                    
                      echo "<div class=\"media\">";
+                     echo "<ul class=\"list-unstyled list-inline media-detail pull-right\">";
+                     if($resuut_select_commentt['id']==$_SESSION['user_id']||$_SESSION['user_status']==2||$resuut_select_post['id']==$_SESSION['user_id']){
+                        if($resuut_select_post['id']==$_SESSION['user_id']){
+                            ?>
+                            <div class="btn_edit">
+                                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalCenter"">Edit</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal2" data-bs-target="#modalCenter" style="background:#ff0000; border: none;">Delete</button>
+                            </div>
+                            <?php
+                        }                     
+                     }
+                     echo "</ul>";
                      echo "<img src=\""; if(!empty($resuut_select_comment['avatar'])){
                         echo $resuut_select_comment['avatar'];
                     }
                     else{
                         echo "assets/images/user_icon_placeholder.png";  
                     }
+                    
                      echo "\" alt=\"profile img\" width=\"40px\" height=\"auto\" style=\"border-radius:100%\"> ".$resuut_select_comment['f_name']." ".$resuut_select_comment['l_name']; // replace with profile picture
                      echo "<div class=\"media-body\">";
-                     echo "<h4 class=\"media-heading\"></h4>";
+                     echo "<h4 class=\"media-heading\"></h4>";                     
                      echo "<p>".$resuut_select_comment['msg_comment']."</p>"; // Comment content
                      echo "<ul class=\"list-unstyled list-inline media-detail pull-left\">";
                      echo "<li><i class=\"fa fa-calendar\"></i>".$resuut_select_comment['time_comment']."</li>"; // replace with timestamp
-                     echo "</ul>";
-                     echo "<ul class=\"list-unstyled list-inline media-detail pull-right\">";
-                     if($resuut_select_commentt['id']==$_SESSION['user_id']||$_SESSION['user_status']==2||$resuut_select_post['id']==$_SESSION['user_id']){
-                        if($resuut_select_post['id']==$_SESSION['user_id']){
-                            echo "<li class=\"\"><a href=\"\" name=\"edit_comment\">Edit</a></li>"; // edit comment
-                        }
-                     echo "<li class=\"\"><a href=\"\" name=\"del_comment\">Delete</a></li>"; // delete comment
-                     }
-                     echo "</ul>";
+                     echo "</ul>";                     
                      echo "</div>";
                      echo "</div>";
                     }
@@ -122,6 +137,61 @@
     </div>
     </div>
 </div>
+<div class="col-lg-4">
+                        <div class="container ">
+                        
+                        <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLongTitle">Edit Profile</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form_edit" name="form_edit" action="controllerProfile.php" method="post">
+                                            <div class="form-group">
+                                                <label for="f_name">Firstname</label>
+                                                <?php
+                                                    echo "<input type=\"text\" class=\"form-control\" id=\"username\"";
+                                                    echo " placeholder=\"".$_SESSION['user_first_name']."\"";
+                                                    echo " name=\"firstname\" required>";
+                                                ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="l_name">Surname</label>
+                                                <?php
+                                                    echo "<input type=\"text\" class=\"form-control\" id=\"lastname\"";
+                                                    echo " placeholder=\"".$_SESSION['user_last_name']."\"";
+                                                    echo " name=\"lastname\" required>";
+                                                ?>
+                                            </div>
+                                            <?php
+                                               if($_SESSION['user_status']!=1) {
+                                            ?>
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <?php
+                                                    echo "<input type=\"password\" class=\"form-control\" id=\"password\"";
+                                                    echo " placeholder=\"**********\"";
+                                                    echo " name=\"password\" required>";
+                                                ?>
+                                            </div>
+                                            <?php
+                                               }
+                                            ?>
+                                            <div style="margin-top: 1rem;">
+                                            <button type="submit" name="change_name" id="submitbn" data-dismiss="modal" class="btn btn-success">Submit</button>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
 </section>  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>

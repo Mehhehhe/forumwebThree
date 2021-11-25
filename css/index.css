@@ -116,7 +116,7 @@ canvas{
 a.loginG ,a.loginG:hover ,a.loginG:visited{
     color : white;
     text-decoration: none;
-cursor: pointer;
+    cursor: pointer;
 }    
 
 .btngg {
