@@ -10,8 +10,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-<body>
-
+<style>
+  body.BG_image{
+    background-image: url("./assets/images/pawel-czerwinski-d5TBzrddHMk-unsplash.jpg") !important; 
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
+</style>
+<body class="BG_image">
 <section class="main frame" style="padding-top:100;">
 <div class="container" style="margin-bottom:100px;">
     

@@ -27,10 +27,10 @@ if (isset($_POST['user_login'])) {
             $_SESSION['user_email_name'] = $row['email'];
         }           
                             
-        //header("location: index.php?error=1");                     
+        header("location: index.php?error=1");                     
     }
 
-        //header("location: index.php?error=2");             
+    header("location: index.php?error=2");             
         
 }
 
@@ -51,27 +51,29 @@ if(isset($_GET['code'])){
         $picture = $google_info['picture'];      
         
         $query = "SELECT id FROM users WHERE email = '$email'";
-        $result = mysqli_query($connect, $query);
-        $row = mysqli_fetch_assoc($result);
+        $row = $dbo->query("$query");
+        $count = $row2->fetchColumn(); 
 
-        if (mysqli_num_rows($result) == 0) {
+        if ($count == 0) {
             $sql = "INSERT INTO users(f_name,l_name,avatar,email,password,status) VALUES('$first_name','$last_name','$picture','$email','$token','1')";
-            mysqli_query($connect,$sql); 
+            $dbo->query("$sql");
+            
             $query2 = "SELECT id FROM users WHERE email = '$email'";
-            $result2 = mysqli_query($connect, $query2);
-            $row2 = mysqli_fetch_assoc($result2);    
+            $row2 = $dbo->query("$query2")->fetch();   
+
             $_SESSION['user_status'] = 1;  
             $_SESSION['user_id'] = $row2['id']; 
             $_SESSION['user_first_name'] = $first_name;
             $_SESSION['user_last_name'] = $last_name;
                 
         }
-        else if (mysqli_num_rows($result) == 1) {             
+        else if ($count == 1) {             
             $sql = "UPDATE users SET avatar = '$picture', password = '$token' WHERE email = '$email";
-            mysqli_query($connect,$sql); 
-            $query2 = "SELECT id,f_name,l_name,status FROM users WHERE email = '$email'";
-            $result2 = mysqli_query($connect, $query2);
-            $row2 = mysqli_fetch_assoc($result2);  
+            $dbo->query("$sql");
+
+            $query2 = "SELECT id,f_name,l_name,status FROM users WHERE email = '$email'";  
+            $row2 = $dbo->query("$query2")->fetch();
+
             $_SESSION['user_status'] = $row2['status'];  
             $_SESSION['user_id'] = $row2['id'];  
             $_SESSION['user_first_name'] = $row2['f_name'];
@@ -109,5 +111,5 @@ echo $_SESSION['user_status'];
 echo "<br>picture : ";
 echo $_SESSION['user_picture'];
 
-//header("location: index.php");
+header("location: index.php");
 ?>

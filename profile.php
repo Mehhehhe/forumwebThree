@@ -4,6 +4,16 @@
     error_reporting(0);
     if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
 ?>
+<style>
+    .waveWrapperInner {
+            position: absolute;
+            width: 100%;
+            overflow: hidden;
+            height: 100%;
+            bottom: -1px;
+            background: black;
+    }
+</style>
 <title>Profile | Website</title>
 <link rel="stylesheet" href="css/profile.css">
 <link rel="stylesheet" href="css/post.css">

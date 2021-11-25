@@ -10,9 +10,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- add icon link -->
-    <link rel="icon" href="images/icon.jpg" type="image/x-icon">
+    <link rel="icon" href="./assets/images/logo.png" type="image/x-icon">
     <!-- specifying a webpage icon for web clip -->
-    <link rel="apple-touch-icon" href="images/icon.jpg" />
+    <link rel="apple-touch-icon" href="./assets/images/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/post.css">
@@ -21,17 +21,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  body.BG_image{
+    background-image: url("./assets/images/pawel-czerwinski-d5TBzrddHMk-unsplash.jpg") !important; 
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
+</style>
 </head>
+
 <?php          
     require "config.php";      
     if(!empty($_SESSION['user_status'])){
 ?>  
-<body>
-<img src="./assets/images/pawel-czerwinski-d5TBzrddHMk-unsplash.jpg" alt="">
+<body class="BG_image">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" >
 
-        <div class="container">
-          <a class="navbar-brand" href="#" style="font-family: 'Roboto Mono', monospace;">K-DIT</a>
+        <div class="container">          
+          <a class="navbar-brand" href="#" style="font-family: 'Roboto Mono', monospace;"><img src="./assets/images/logo.png" alt="" width="50px" height="50px"> K-DIT</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -69,7 +78,7 @@
       <section class="main frame" style="padding-top:100;">
       <div class="container" style="margin-bottom:100px;">
       <div class="row">
-        <p class="latest header" style="font-size: 36px; dashed black; text-align: center; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);">Latest</p>
+        <p class="latest header" style="font-size: 36px; dashed black; text-align: center; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); color: white;">Latest</p>
       </div>
 
       <?php
@@ -204,8 +213,8 @@
     </form>
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" >
-        <div class="container">
-          <a class="navbar-brand" href="index.php" style="font-family: 'Roboto Mono', monospace;">K-DIT</a>
+        <div class="container">        
+          <a class="navbar-brand" href="#" style="font-family: 'Roboto Mono', monospace;"><img src="./assets/images/logo.png" alt="" width="50px" height="50px"> K-DIT</a>
         </div>
       </nav>
       <script type="module" src="js/index.js"></script>      

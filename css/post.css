@@ -231,8 +231,7 @@
         width: 100%;
         overflow: hidden;
         height: 100%;
-        bottom: -1px;
-        background: black;
+        bottom: -1px;        
     }
     .bgTop {
         z-index: 15;
