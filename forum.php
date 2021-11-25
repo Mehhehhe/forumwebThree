@@ -85,6 +85,11 @@
                     <fieldset>
                         <div class="row">
                             <div class="col-sm-3 col-lg-2 hidden-xs">
+                                <?php
+                                    echo "<input type=\"hidden\" name=\"id_post\" value=\"";
+                                    echo $_GET['id'];
+                                    echo "\">";
+                                ?>
                             	<?php echo "<img src=\""; if(!empty($resuut_select_post['avatar'])){
                                     echo $resuut_select_post['avatar'];
                                 }
@@ -119,7 +124,7 @@
                                 <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalCenter"">Edit</button>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter" style="background:#ff0000; border: none;">Delete</button>
                             </div>
-                            <?php
+                <?php
                         }                     
                      }
                      echo "</ul>";

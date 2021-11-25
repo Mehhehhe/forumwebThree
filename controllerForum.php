@@ -21,7 +21,7 @@ if(!empty($_SESSION['user_status'])){
             array_push($errors, "Data is required");        
         }
         if (count($errors) == 0) {
-            $sql_create_post = "INSERT INTO post(id,title_post,msg_post,like_post) VALUES('$user_id','$title_post','$msg_post','0')";
+            $sql_create_post = "INSERT INTO post(id,title_post,msg_post) VALUES('$user_id','$title_post','$msg_post')";
             mysqli_query($connect,$sql_create_post); // สั่งรันคำสั่ง sql       
         }
         else{
