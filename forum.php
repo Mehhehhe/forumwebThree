@@ -138,60 +138,60 @@
     </div>
 </div>
 <div class="col-lg-4">
-                        <div class="container ">
-                        
-                        <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modalLongTitle">Edit Profile</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form id="form_edit" name="form_edit" action="controllerProfile.php" method="post">
-                                            <div class="form-group">
-                                                <label for="f_name">Firstname</label>
-                                                <?php
-                                                    echo "<input type=\"text\" class=\"form-control\" id=\"username\"";
-                                                    echo " placeholder=\"".$_SESSION['user_first_name']."\"";
-                                                    echo " name=\"firstname\" required>";
-                                                ?>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="l_name">Surname</label>
-                                                <?php
-                                                    echo "<input type=\"text\" class=\"form-control\" id=\"lastname\"";
-                                                    echo " placeholder=\"".$_SESSION['user_last_name']."\"";
-                                                    echo " name=\"lastname\" required>";
-                                                ?>
-                                            </div>
-                                            <?php
-                                               if($_SESSION['user_status']!=1) {
-                                            ?>
-                                            <div class="form-group">
-                                                <label for="password">Password</label>
-                                                <?php
-                                                    echo "<input type=\"password\" class=\"form-control\" id=\"password\"";
-                                                    echo " placeholder=\"**********\"";
-                                                    echo " name=\"password\" required>";
-                                                ?>
-                                            </div>
-                                            <?php
-                                               }
-                                            ?>
-                                            <div style="margin-top: 1rem;">
-                                            <button type="submit" name="change_name" id="submitbn" data-dismiss="modal" class="btn btn-success">Submit</button>
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        
-                                    </div>
-                                </div>
-                            </div>
+    <div class="container ">
+    
+    <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLongTitle">Edit Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form_edit" name="form_edit" action="controllerProfile.php" method="post">
+                        <div class="form-group">
+                            <label for="f_name">Firstname</label>
+                            <?php
+                                echo "<input type=\"text\" class=\"form-control\" id=\"username\"";
+                                echo " placeholder=\"".$_SESSION['user_first_name']."\"";
+                                echo " name=\"firstname\" required>";
+                            ?>
                         </div>
+                        <div class="form-group">
+                            <label for="l_name">Surname</label>
+                            <?php
+                                echo "<input type=\"text\" class=\"form-control\" id=\"lastname\"";
+                                echo " placeholder=\"".$_SESSION['user_last_name']."\"";
+                                echo " name=\"lastname\" required>";
+                            ?>
                         </div>
+                        <?php
+                            if($_SESSION['user_status']!=1) {
+                        ?>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <?php
+                                echo "<input type=\"password\" class=\"form-control\" id=\"password\"";
+                                echo " placeholder=\"**********\"";
+                                echo " name=\"password\" required>";
+                            ?>
+                        </div>
+                        <?php
+                            }
+                        ?>
+                        <div style="margin-top: 1rem;">
+                        <button type="submit" name="change_name" id="submitbn" data-dismiss="modal" class="btn btn-success">Submit</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </section>  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>

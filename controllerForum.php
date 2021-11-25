@@ -14,15 +14,22 @@ if(!empty($_SESSION['user_status'])){
         if (empty($title_post) || empty($msg_post)) {
             array_push($errors, "Data is required");        
         }
-
         if (count($errors) == 0) {
-            $sql_create_post = "INSERT INTO post(id,title_post,msg_post) VALUES('$user_id','$title_post','$msg_post')";
+            $sql_create_post = "INSERT INTO post(id,title_post,msg_post,like_post) VALUES('$user_id','$title_post','$msg_post','0')";
             mysqli_query($connect,$sql_create_post); // สั่งรันคำสั่ง sql       
         }
         else{
             array_pop($errors);
         } 
-
+        /*
+        echo $sql_create_post;
+        echo "<br>user_id : ";
+        echo $user_id;
+        echo "<br>title_post : ";
+        echo $title_post;
+        echo "<br>msg_post : ";
+        echo $msg_post;
+        */
         header('location: index.php');
     }
 
@@ -155,6 +162,6 @@ if(!empty($_SESSION['user_status'])){
 }
 
 else{
-    header('location: index.php');
+    //header('location: index.php');
 }
 ?>

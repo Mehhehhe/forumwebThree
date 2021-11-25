@@ -58,21 +58,8 @@
             
           </div>
         </div>
-        <button type="button" class="btn btn-primary" onclick="openPost()" style="position:fixed; right:20; bottom:20; width:100px; height:100px; border-radius:100%; font-size:40px;background:black;"> &plus; </button>
-        <div class="form-popup aligns-items-center justify-content-center" id="myForm" style="z-index: 1000; position:absolute; background:white; width:50%; box-shadow:2px 2px 12px rgba(0,0,0,0.2); margin-top:100px; left:25%;">
-      <form action="controllerForum.php" method="post" style="width:80%;padding-left:100px;">
-          <div class="row">
-              <label for="title_post">Topic</label>
-              <input type="text" name="title_post" id="topic" placeholder="Topic">
-          </div>
-          <div class="row">
-              <label for="msg_post">Content</label>
-              <textarea name="msg_post" id="Edit forum content" cols="30" rows="10" placeholder="Write your content ..."></textarea>
-          </div>
-          
-          <button type="submit" id="createPostButton" name="create_post">POST</button>
-          <button type="button" onclick="closePost()">Cancel</button>
-      </form>
+      <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalCenter" style="position:fixed; right:20; bottom:20; width:100px; height:100px; border-radius:100%; font-size:40px;background:black;"> &plus;</button>
+     
       </div>
       </nav>
       <section class="main frame" style="padding-top:100;">
@@ -145,7 +132,60 @@
       <?php
           }
       ?>
-      </section>  
+      <div class="col-lg-4">
+    <div class="container ">
+    
+    <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLongTitle">Create post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form_edit" name="form_edit" action="controllerForum.php" method="post">
+                        <div class="form-group">
+                            <label for="f_name">Title</label>
+                                <input type="text" class="form-control" id="username" placeholder="topic" name="title_post" required> 
+                        </div>
+                        <div class="form-group">
+                            <label for="l_name">Content</label>                            
+                            <div>
+                              <textarea name="msg_post" id="Edit forum content" cols="60" rows="10" placeholder="Write your content ..." required></textarea>
+                            </div>
+                            
+                        </div>                        
+                        <div style="margin-top: 1rem;">
+                        <button type="submit" name="create_post" id="submitbn" data-dismiss="modal" class="btn btn-success">Submit</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-primary" onclick="openPost()" style="position:fixed; right:20; bottom:20; width:100px; height:100px; border-radius:100%; font-size:40px;background:black;"> &plus; </button>
+        <div class="form-popup aligns-items-center justify-content-center" id="myForm" style="z-index: 1000; position:absolute; background:white; width:50%; box-shadow:2px 2px 12px rgba(0,0,0,0.2); margin-top:100px; left:25%;">
+      <form action="controllerForum.php" method="post" style="width:80%;padding-left:100px;">
+          <div class="row">
+              <label for="title_post">Topic</label>
+              <input type="text" name="title_post" id="topic" placeholder="Topic">
+          </div>
+          <div class="row">
+              <label for="msg_post">Content</label>
+              <textarea name="msg_post" id="Edit forum content" cols="30" rows="10" placeholder="Write your content ..."></textarea>
+          </div>
+          
+          <button type="submit" id="createPostButton" name="create_post">POST</button>
+          <button type="button" onclick="closePost()">Cancel</button>
+      </form>
+ </section>  
+      
 <?php           
     }
     else{
@@ -204,27 +244,6 @@
       }
       function myFunction(x) {
           x.classList.toggle("fa-thumbs-down");
-      }
-      function openPost(){
-          document.getElementById("myForm").style.display = "block";
-          document.getElementById("createPostButton").setAttribute("name","create_post");
-          document.getElementById("createPostButton").textContent = "Post";
-          document.getElementById("topic").value = "";
-          document.getElementById("Edit forum content").textContent = "";
-      }
-      function closePost(){
-          document.getElementById("myForm").style.display = "none";
-      }
-      function editPost(){
-          document.getElementById("myForm").style.display = "block";
-          document.getElementById("createPostButton").setAttribute("name","edit_post");
-          document.getElementById("createPostButton").textContent = "Edit Post";
-          var topic_head = document.getElementById("forum_topic_name").textContent;
-          console.log(topic_head);
-          document.getElementById("topic").value = topic_head;
-          var txt = document.getElementById("posted_content").textContent;
-          console.log(txt);
-          document.getElementById("Edit forum content").textContent = txt;
-      }
+      }      
     </script>
 </html>
