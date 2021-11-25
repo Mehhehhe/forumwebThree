@@ -18,7 +18,7 @@ import {GLTFLoader} from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loa
               const color = 'lightblue';
               const near = 1;
               const far = 10;
-              scene.fog = new THREE.Fog(color, near, far);
+              //scene.fog = new THREE.Fog(color, near, far);
             }
             // camera
             camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, .1, 10);
@@ -27,7 +27,7 @@ import {GLTFLoader} from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loa
                 width: window.innerWidth,
                 height: window.innerHeight,
             }
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha:true});
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha:false});
             renderer.setSize(sizes.width, sizes.height);
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.shadowMap.enabled = true;
@@ -42,11 +42,11 @@ import {GLTFLoader} from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loa
             scene.add(ambLight);
 
             light = new THREE.PointLight( 0xffffff, 1, 100 );
-            light.position.set( 1, 1, 4 );
+            light.position.set( 3, 1, 4 );
             scene.add( light );
 
             const aLight = new THREE.PointLight( 0xf44336, 0.35, 50 );
-            aLight.position.set(0.75,1,-1);
+            aLight.position.set(3.75,1,-1);
             scene.add( aLight );
 
             // Orbit Control
@@ -58,41 +58,17 @@ import {GLTFLoader} from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loa
             controls.dampingFactor = 0.25;
             controls.zoomSpeed = 1.2;
             // Obj loader *** import obj file
-            objLoader.load(
-                './model/proj01.obj',
-                function (object){
-                    object.traverse(function(child){
-                      if(child instanceof THREE.Mesh){
-                        child.material = new THREE.MeshStandardMaterial(
-                          {
-                            color: 0xb4eeb4,
-                            shading: THREE.FlatShading,
-                            metalness: 0,
-                            roughness: 0.8
-                          }
-                        );
-                      }
-                    });
-                    object.position.x = 0;
-                    object.position.y = 0;
-                    object.scale.set(0.25,0.25,0.25);
-                    object.receiveShadow = false;
-                    object.castShadow = true;
-
-                    scene.add(object);             
+            gltfLoader.load(
+                './model/room.glb',
+                (object) => {
+                  const root = object.scene;
+                  root.scale.set(1,1,1);
+                  root.position.set(3,1,0);
+                  scene.add(root);
+                  // add to clickable group
+                  //objects.push(root);
+                  root.rotation.y = -0.5;            
                 }
-            );
-
-            objLoader.load(
-              './model/PC Monitor Set.obj',
-              function (object){
-                object.position.x = 0.75;
-                object.position.y = 1;
-                object.position.z = -1;
-                object.scale.set(0.25,0.25,0.25);
-                scene.add(object);
-                objects.push(object);
-              }
             );
 
             gltfLoader.load(
@@ -100,7 +76,7 @@ import {GLTFLoader} from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loa
               (object) => {
                 const root = object.scene;
                 root.scale.set(0.0325,0.0325,0.0325);
-                root.position.set(0.5,1.2,-0.6);
+                root.position.set(3,2.2,-0.6);
                 scene.add(root);
                 // add to clickable group
                 objects.push(root);
@@ -154,8 +130,8 @@ import {GLTFLoader} from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loa
             else if (openPopUp == false){
               controls.enabled = true;
             }
-            light.position.x = 0;
-            light.position.y = 1;
+            light.position.x = 3;
+            light.position.y = 2;
             light.position.z = 0;
             camera.position.lerp(cameraTarget,0.01);
             renderer.render(scene, camera);

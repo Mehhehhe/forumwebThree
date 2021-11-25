@@ -27,6 +27,7 @@
     if(!empty($_SESSION['user_status'])){
 ?>  
 <body>
+<img src="./assets/images/pawel-czerwinski-d5TBzrddHMk-unsplash.jpg" alt="">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" >
 
         <div class="container">
@@ -193,7 +194,16 @@
     }
     else{
 ?>  
-<body>
+<body>  
+  <div class="welcome" style="position:absolute; width:50%; height:300px; margin-top:10%; padding-left:200px;font-family: 'Roboto Mono', monospace;color:white;">
+    <div class="row">
+      <p style="font-size:58px;">Welcome to</p><br>
+      <p style="font-size:64px;">the COMMUNITY</p>
+    </div>
+    <div class="row" style="font-size:36px;">
+    <br><br><p>Question to<br>Unquestionable</p>
+    </div>
+  </div>
     <div class="form-popup" id="myForm" style="z-index: 1000;">
     <form action="login.php" class="form-container" method="POST">
         <h1>Login</h1>
@@ -231,18 +241,19 @@
     }
   
 ?>  
-</body>
 <div class="waveWrapper waveAnimation">
   <div class="waveWrapperInner bgTop">
-    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+
   </div>
   <div class="waveWrapperInner bgMiddle">
-    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+
   </div>
   <div class="waveWrapperInner bgBottom">
-    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+    
   </div>
 </div> 
+</body>
+
 </html>
 
 <script src="js/main.js"></script>

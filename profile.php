@@ -12,12 +12,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
 <body>  
 <section class="main frame" style="padding-top:100;">
-<div class="container boxdiv" id="boxdiv" style="background-color:transparent;box-shadow: 0px 8px 40px 0px rgba(0,0,0,0.2);">
-    <div class="Profile_head"><p class="Profile_Title" style="font-family: 'Roboto Mono', monospace;">My Profile</p></div>
+<div class="container boxdiv" id="boxdiv" style="background-color:transparent;box-shadow: 0px 8px 60px 0px red;">
+    <div class="Profile_head"><p class="Profile_Title" style="font-family: 'Roboto Mono', monospace;color:white;">My Profile</p></div>
     <div class="row">
         <div class="col-lg-2"></div>
         <div class="col-lg-3">
-            <div class="row" style="font-family: 'Roboto Mono', monospace; color:black;">
+            <div class="row" style="font-family: 'Roboto Mono', monospace; color:white;">
                 <?php
                     echo "<img src=\""; if(!empty($_SESSION['user_picture'])){
                         echo $_SESSION['user_picture'];
@@ -31,7 +31,7 @@
         </div>
         <div class="col-lg-1"></div>
         <div class="col-lg-5">
-            <div class="row">                
+            <div class="row" style="color:white">                
                 <div class="row">
                     <div class="col-lg-9" style="margin-top:20px;">
                         <p class="user">Username</p>

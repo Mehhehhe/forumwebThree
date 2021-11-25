@@ -4,9 +4,8 @@ body{
 }
 *{box-sizing: border-box;}
 
-canvas{
+canvas {
     background: transparent;
-    box-shadow: inset 0 0 500px #000;
 }
 
 .dropbtn {
