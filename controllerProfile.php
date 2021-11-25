@@ -12,7 +12,7 @@ if (isset($_POST['change_name'])&&!empty($_SESSION['user_status'])) {
         $query_change_name = "UPDATE users SET f_name = '$firstname' ,l_name ='$lastname'WHERE id ='".$_SESSION['user_id']."'"; 
     }
     else{
-        $query_change_name = "UPDATE users SET f_name = '$firstname' ,l_name ='$lastname' ,password ='".$POST['password']."' WHERE id ='".$_SESSION['user_id']."'"; 
+        $query_change_name = "UPDATE users SET f_name = '$firstname' ,l_name ='$lastname' ,password ='".md5($_POST['password'])."' WHERE id ='".$_SESSION['user_id']."'"; 
     }
     mysqli_query($connect, $query_change_name);
 
