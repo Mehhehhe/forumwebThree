@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="css/post.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
 </head>
 <?php          
     require "config.php";      
@@ -27,7 +30,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" >
 
         <div class="container">
-          <a class="navbar-brand" href="#">เรด-DIT</a>
+          <a class="navbar-brand" href="#" style="font-family: 'Roboto Mono', monospace;">K-DIT</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -210,7 +213,7 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" >
         <div class="container">
-          <a class="navbar-brand" href="index.php">เรด-DIT</a>
+          <a class="navbar-brand" href="index.php" style="font-family: 'Roboto Mono', monospace;">K-DIT</a>
         </div>
       </nav>
       <script type="module" src="js/index.js"></script>      
@@ -229,6 +232,17 @@
   
 ?>  
 </body>
+<div class="waveWrapper waveAnimation">
+  <div class="waveWrapperInner bgTop">
+    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgMiddle">
+    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgBottom">
+    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+  </div>
+</div> 
 </html>
 
 <script src="js/main.js"></script>

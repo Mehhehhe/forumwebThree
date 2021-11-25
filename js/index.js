@@ -31,11 +31,16 @@ import {OrbitControls} from 'https://cdn.skypack.dev/@three-ts/orbit-controls';
             light = new THREE.PointLight( 0xffffff, 1, 100 );
             light.position.set( 1, 1, 4 );
             scene.add( light );
+
+            const aLight = new THREE.PointLight( 0xf44336, 0.35, 50 );
+            aLight.position.set(0.75,1,-1);
+            scene.add( aLight );
+
             // Orbit Control
             controls = new OrbitControls(camera);
             controls.minDistance = 3;
             controls.maxDistance = 5;
-            //controls.enableRotate = false;
+            controls.enableRotate = false;
             // Obj loader *** import obj file
             objLoader.load(
                 './model/proj01.obj',

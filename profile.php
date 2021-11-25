@@ -6,14 +6,18 @@
 ?>
 <title>Profile | Website</title>
 <link rel="stylesheet" href="css/profile.css">
+<link rel="stylesheet" href="css/post.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
 <body>  
 <section class="main frame" style="padding-top:100;">
-<div class="container boxdiv">
-    <div class="Profile_head"><p class="Profile_Title">My Profile</p></div>
+<div class="container boxdiv" id="boxdiv" style="background-color:transparent;box-shadow: 0px 8px 40px 0px rgba(0,0,0,0.2);">
+    <div class="Profile_head"><p class="Profile_Title" style="font-family: 'Roboto Mono', monospace;">My Profile</p></div>
     <div class="row">
         <div class="col-lg-2"></div>
         <div class="col-lg-3">
-            <div class="row">
+            <div class="row" style="font-family: 'Roboto Mono', monospace; color:black;">
                 <?php
                     echo "<img src=\""; if(!empty($_SESSION['user_picture'])){
                         echo $_SESSION['user_picture'];
@@ -142,6 +146,17 @@
 </section>  
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<div class="waveWrapper waveAnimation">
+  <div class="waveWrapperInner bgTop">
+    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgMiddle">
+    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgBottom">
+    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+  </div>
+</div> 
 </body>
 
 </html>

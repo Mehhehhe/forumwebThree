@@ -7,7 +7,11 @@
 <title>Post | Website</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/post.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
 <body>
+
 <section class="main frame" style="padding-top:100;">
 <div class="container" style="margin-bottom:100px;">
     
@@ -67,12 +71,12 @@
     </div>
 
 
-     <div class="container" id="comments" style="margin-top:200px;">   
-    	<div class="row">
+     <div class="container" id="comments" style="margin-top:200px;border-radius:20px;width:100%;">   
+    	<div class="row" style="width:100%;">
             <div class="col-sm-8" id="commentsDiv">   
-                <form action="controllerForum.php" method="POST">
-                	<h3 class="pull-left">New Comment</h3>
-                	<button type="submit" id="submitButton" class="btn btn-normal pull-right" name="comment_post">Submit</button>
+                <form action="controllerForum.php" method="POST" style="width:100%;">
+                	<h3 class="pull-left" style="padding-top:20px;padding:20px;font-family: 'Roboto Mono', monospace;">New Comment</h3>
+                	<button type="submit" id="submitButton" class="btn btn-normal pull-right" name="comment_post" style="margin-top:20px;color:white;">Submit</button>
                     <fieldset>
                         <div class="row">
                             <div class="col-sm-3 col-lg-2 hidden-xs">
@@ -87,7 +91,7 @@
                                 ?>
                             </div>
                             <div class="form-group col-xs-12 col-sm-9 col-lg-10">
-                                <textarea class="form-control" name="msg_comment" id="message" placeholder="Your message" required=""></textarea>
+                                <textarea class="form-control" name="msg_comment" id="message" placeholder="Your message" required="" style="width:100%;"></textarea>
                             </div>
                         </div>  	
                     </fieldset>
@@ -137,64 +141,76 @@
     </div>
     </div>
 </div>
+
 <div class="col-lg-4">
-    <div class="container ">
-    
-    <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLongTitle">Edit Profile</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="form_edit" name="form_edit" action="controllerProfile.php" method="post">
-                        <div class="form-group">
-                            <label for="f_name">Firstname</label>
-                            <?php
-                                echo "<input type=\"text\" class=\"form-control\" id=\"username\"";
-                                echo " placeholder=\"".$_SESSION['user_first_name']."\"";
-                                echo " name=\"firstname\" required>";
-                            ?>
+                        <div class="container ">
+                        
+                        <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLongTitle">Edit Profile</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form_edit" name="form_edit" action="controllerProfile.php" method="post">
+                                            <div class="form-group">
+                                                <label for="f_name">Firstname</label>
+                                                <?php
+                                                    echo "<input type=\"text\" class=\"form-control\" id=\"username\"";
+                                                    echo " placeholder=\"".$_SESSION['user_first_name']."\"";
+                                                    echo " name=\"firstname\" required>";
+                                                ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="l_name">Surname</label>
+                                                <?php
+                                                    echo "<input type=\"text\" class=\"form-control\" id=\"lastname\"";
+                                                    echo " placeholder=\"".$_SESSION['user_last_name']."\"";
+                                                    echo " name=\"lastname\" required>";
+                                                ?>
+                                            </div>
+                                            <?php
+                                               if($_SESSION['user_status']!=1) {
+                                            ?>
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <?php
+                                                    echo "<input type=\"password\" class=\"form-control\" id=\"password\"";
+                                                    echo " placeholder=\"**********\"";
+                                                    echo " name=\"password\" required>";
+                                                ?>
+                                            </div>
+                                            <?php
+                                               }
+                                            ?>
+                                            <div style="margin-top: 1rem;">
+                                            <button type="submit" name="change_name" id="submitbn" data-dismiss="modal" class="btn btn-success">Submit</button>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="l_name">Surname</label>
-                            <?php
-                                echo "<input type=\"text\" class=\"form-control\" id=\"lastname\"";
-                                echo " placeholder=\"".$_SESSION['user_last_name']."\"";
-                                echo " name=\"lastname\" required>";
-                            ?>
                         </div>
-                        <?php
-                            if($_SESSION['user_status']!=1) {
-                        ?>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <?php
-                                echo "<input type=\"password\" class=\"form-control\" id=\"password\"";
-                                echo " placeholder=\"**********\"";
-                                echo " name=\"password\" required>";
-                            ?>
-                        </div>
-                        <?php
-                            }
-                        ?>
-                        <div style="margin-top: 1rem;">
-                        <button type="submit" name="change_name" id="submitbn" data-dismiss="modal" class="btn btn-success">Submit</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>  
+</section> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
+    <div class="waveWrapper waveAnimation">
+  <div class="waveWrapperInner bgTop">
+    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgMiddle">
+    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgBottom">
+    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+  </div>
+</div>   
 </body>
 <script>
 function myFunction(x) {
@@ -221,6 +237,7 @@ function editPost(){
     console.log(txt);
     document.getElementById("Edit forum content").textContent = txt;
 }
+
 </script>
 </html>
 <?php
