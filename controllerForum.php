@@ -125,19 +125,16 @@ if(!empty($_SESSION['user_status'])){
     if(isset($_POST['del_comment'])){
         $id_comment = $_POST['id_comment'];
 
-        echo "<br>id_comment : ";
-        echo $id_comment;
+        //echo "<br>id_comment : ";
+        //echo $id_comment;
 
         $sql_select_comment = "SELECT id,id_post FROM comment WHERE id_comment='$id_comment'";
         $query_select_comment = mysqli_query($connect,$sql_select_comment);
         $resuut_select_comment = mysqli_fetch_assoc($query_select_comment);
         $id_post = $resuut_select_comment['id_post'];
+        $id = $resuut_select_comment['id'];
 
-        $sql_select_post = "SELECT id FROM post WHERE id_comment='$id_post'";
-        $query_select_post = mysqli_query($connect,$sql_select_post);
-        $resuut_select_post = mysqli_fetch_assoc($query_select_post);
-
-        if($resuut_select_comment['id']==$user_id||$_SESSION['user_status']==2||$resuut_select_post['id']==$user_id){
+        if($id==$user_id||$_SESSION['user_status']==2||$id==$user_id){
 
             $sql_del_comment = "DELETE FROM comment WHERE id_comment='$id_comment'";
             mysqli_query($connect,$sql_del_comment); // สั่งรันคำสั่ง sql    
@@ -150,16 +147,20 @@ if(!empty($_SESSION['user_status'])){
     if(isset($_POST['edit_comment'])){
         $id_comment = $_POST['id_comment'];
 
+       // echo "<br>id_comment : ";
+        //echo $id_comment;
+
         $sql_select_comment = "SELECT id,id_post FROM comment WHERE id_comment='$id_comment'";
         $query_select_comment = mysqli_query($connect,$sql_select_comment);
         $resuut_select_comment = mysqli_fetch_assoc($query_select_comment);
         $id_post = $resuut_select_comment['id_post'];
+        $id = $resuut_select_comment['id'];
 
-        $sql_select_post = "SELECT id FROM post WHERE id_comment='$id_post'";
-        $query_select_post = mysqli_query($connect,$sql_select_post);
-        $resuut_select_post = mysqli_fetch_assoc($query_select_post);
+        //echo "<br>id_user : ";
+        //echo $id;
 
-        if($resuut_select_comment['id']==$user_id||$_SESSION['user_status']==2){
+
+        if($id==$user_id||$_SESSION['user_status']==2){
 
             $msg_comment = mysqli_real_escape_string($connect, $_POST['msg_comment']);    
 
@@ -168,16 +169,18 @@ if(!empty($_SESSION['user_status'])){
             }
 
             if (count($errors) == 0) {
-                $sql_edit_post = "UPDATE comment SET msg_post= '$msg_post'  WHERE id_comment = '$id_comment'";
-                mysqli_query($connect,$sql_edit_post); // สั่งรันคำสั่ง sql       
+                $sql_edit_comment = "UPDATE comment SET msg_comment= '$msg_comment'  WHERE id_comment = '$id_comment'";
+                mysqli_query($connect,$sql_edit_comment); // สั่งรันคำสั่ง sql       
             }
             else{
                 array_pop($errors);
             } 
       
         }
+
+        echo $sql_edit_comment;
         
-        header("location: forum.php?id=$id_post");
+        //header("location: forum.php?id=$id_post");
     }
 
 }

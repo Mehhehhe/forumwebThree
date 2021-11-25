@@ -1,5 +1,5 @@
 <?php
-    //require "dbconnect.php"; 
+    require "dbconnect.php"; 
     require "header.php";
     //error_reporting(0);
     if(isset($_SESSION['user_status']) && !empty($_SESSION['user_status'])){
@@ -160,7 +160,18 @@
 </div>
 </section>  
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<div class="waveWrapper waveAnimation">
+  <div class="waveWrapperInner bgTop">
+    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgMiddle">
+    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgBottom">
+    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+  </div>
+</div> 
 </body>
 
 </html>
