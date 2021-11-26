@@ -120,6 +120,7 @@ import {GLTFLoader} from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loa
           document.getElementById("myForm").style.display = "block";
           openPopUp = true;
         }
+        window.openForm = openForm;
         function animate() {
             requestAnimationFrame(animate);
             //console.log(camera.position);
