@@ -10,10 +10,13 @@ if (isset($_POST['user_login'])) {
     $password = md5($_POST['password']);
 
     $query = "SELECT * FROM users WHERE email = '".$_POST['email']."' AND password = '$password' ";
-    $row2 = $dbo->query("$query"); 
-    $count = $row2->fetchColumn(); 
+    $count  = $dbo->query("$query")->rowCount(); 
     $row = $dbo->query("$query")->fetch();   
     
+    echo "count : ";
+    echo $count;
+    echo "<br>";
+
     if ($count == 1) {
         $_SESSION['user_email'] = $row['email'];      
         $_SESSION['user_first_name'] = $row['f_name'];   
@@ -26,11 +29,14 @@ if (isset($_POST['user_login'])) {
         if ($_SESSION['user_email_name']==""){
             $_SESSION['user_email_name'] = $row['email'];
         }           
-                            
+             
+        echo "<br>t<br>" ;
         header("location: index.php?error=1");                     
     }
-
-    header("location: index.php?error=2");             
+    else{
+        header("location: index.php?error=2");  
+        echo "<br>f<br>" ;   
+    }         
         
 }
 
@@ -51,9 +57,10 @@ if(isset($_GET['code'])){
         $picture = $google_info['picture'];      
         
         $query = "SELECT id FROM users WHERE email = '$email'";
-        $row = $dbo->query("$query");
-        $count = $row2->fetchColumn(); 
-
+        $count  = $dbo->query("$query")->rowCount();
+        echo "count : ";
+        echo $count;
+        echo "<br>";
         if ($count == 0) {
             $sql = "INSERT INTO users(f_name,l_name,avatar,email,password,status) VALUES('$first_name','$last_name','$picture','$email','$token','1')";
             $dbo->query("$sql");
@@ -111,5 +118,4 @@ echo $_SESSION['user_status'];
 echo "<br>picture : ";
 echo $_SESSION['user_picture'];
 
-header("location: index.php");
 ?>

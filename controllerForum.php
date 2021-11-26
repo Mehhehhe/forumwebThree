@@ -142,7 +142,7 @@ if(!empty($_SESSION['user_status'])){
         
         }
 
-        //echo $sql_edit_comment;
+        echo $sql_edit_comment;
         
         header("location: forum.php?id=$id_post");
     }

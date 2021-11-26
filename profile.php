@@ -24,7 +24,7 @@
 <section class="main frame" style="padding-top:100;">
 <div class="container boxdiv" id="boxdiv" style="background-color:transparent;box-shadow: 0px 8px 60px 0px red;">
     <div class="Profile_head"><p class="Profile_Title" style="font-family: 'Roboto Mono', monospace;color:white;">My Profile</p></div>
-    <div class="row">
+    <div class="row" style="background-color: black;">
         <div class="col-lg-2"></div>
         <div class="col-lg-3">
             <div class="row" style="font-family: 'Roboto Mono', monospace; color:white;">
@@ -99,7 +99,7 @@
                         ?>
                     </div>
                 </div>
-                <div class="btn_edit">
+                <div class="btn_edit" style="margin-bottom: 20px">
                     <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalCenter"">Edit Profile</button>
                 </div>
                 
