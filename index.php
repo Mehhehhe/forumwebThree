@@ -23,7 +23,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
 <style>
   body.BG_image{
-    background-image: url("./assets/images/pawel-czerwinski-d5TBzrddHMk-unsplash.jpg") !important; 
+    background-color: black; 
     background-repeat: no-repeat;
     background-size: auto;
     background-attachment: fixed;
@@ -78,7 +78,7 @@
       <section class="main frame" style="padding-top:100;">
       <div class="container" style="margin-bottom:100px;">
       <div class="row">
-        <p class="latest header" style="font-size: 36px; dashed black; text-align: center; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); color: white;">Latest</p>
+        <p class="latest header" style="font-family: 'Roboto Mono', monospace;font-size: 36px; dashed black; text-align: center; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); color: white;">LATEST</p>
       </div>
 
       <?php
@@ -339,7 +339,7 @@
     </script> 
 <body>  
   <div class="welcome" style="position:absolute; width:50%; height:300px; margin-top:10%; padding-left:200px;font-family: 'Roboto Mono', monospace;color:white;">
-    <div class="row">
+    <div class="row" style="text-shadow: 0px 0px 20px red">
       <p style="font-size:58px;">Welcome to</p><br>
       <p style="font-size:64px;">the COMMUNITY</p>
     </div>

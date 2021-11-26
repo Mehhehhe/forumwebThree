@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
 <style>
   body.BG_image{
-    background-image: url("./assets/images/pawel-czerwinski-d5TBzrddHMk-unsplash.jpg") !important; 
+    background-color: black; 
     background-repeat: no-repeat;
     background-size: auto;
     background-attachment: fixed;
