@@ -163,7 +163,7 @@
                         <div class="form-group">
                             <label for="l_name">Content</label>                            
                             <div>
-                              <textarea name="msg_post" id="Edit forum content" cols="60" rows="10" placeholder="Write your content ..." required></textarea>
+                              <textarea name="msg_post" id="Edit forum content" cols="60" rows="10" placeholder="Write your content ..." style="width:100%" required></textarea>
                             </div>
                             
                         </div>                        
