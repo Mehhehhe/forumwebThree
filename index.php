@@ -185,79 +185,6 @@
     }
     else{
 ?>  
-<body>  
-  <div class="welcome" style="position:absolute; width:50%; height:300px; margin-top:10%; padding-left:200px;font-family: 'Roboto Mono', monospace;color:white;">
-    <div class="row">
-      <p style="font-size:58px;">Welcome to</p><br>
-      <p style="font-size:64px;">the COMMUNITY</p>
-    </div>
-    <div class="row" style="font-size:36px;">
-    <br><br><p>Question to<br>Unquestionable</p>
-    </div>
-  </div>
-    <div class="form-popup" id="myForm" style="z-index: 1000;">
-    <form action="login.php" class="form-container" method="POST">
-        <h1>Login</h1>
-
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required>
-
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
-
-        <button type="submit" class="btn" name="user_login">Login</button>
-        <a href="<?php echo $gClient->createAuthUrl();?>#" class="google btn btngg" style="background-color: #dd4b39; color: white ;"><i class="fa fa-google fa-fw">
-          </i> Login with Google+
-        </a>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-    </form>
-    </div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" >
-        <div class="container">        
-          <a class="navbar-brand" href="#" style="font-family: 'Roboto Mono', monospace;"><img src="./assets/images/logo.png" alt="" width="50px" height="50px"> K-DIT</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse ms-auto justify-content-end" id="navbarSupportedContent">
-            <ul class="navbar-nav" style="cursor: pointer;">
-              <li class="nav-item">
-                <a class="nav-link" href="#" onclick="openForm()">Sign In</a>
-              </li>
-            </ul>            
-          </div>
-        </div>        
-      </nav> 
-<?php         
-    }
-    if($_GET['error']==1){
-      echo '<script type="text/javascript">';
-      echo ' alert("Login Complete!!"); ';  //not showing an alert box.
-      echo '</script>';
-    }
-    else if ($_GET['error']==2){
-        echo '<script type="text/javascript">';
-        echo ' alert("Login Fail!!"); ';  //not showing an alert box.
-        echo '</script>';
-    }
-  
-?>  
-<div class="waveWrapper waveAnimation">
-  <div class="waveWrapperInner bgTop">
-
-  </div>
-  <div class="waveWrapperInner bgMiddle">
-
-  </div>
-  <div class="waveWrapperInner bgBottom">
-    
-  </div>
-</div> 
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js'></script>
-<script src='https://threejs.org/examples/js/controls/TrackballControls.js'></script>
-<script src='https://mamboleoo.be/learnThree/demos/OBJLoader.js'></script>
 <script type="module">
       import {OrbitControls} from 'https://cdn.skypack.dev/@three-ts/orbit-controls';
       import {GLTFLoader} from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
@@ -410,6 +337,79 @@
         init();
         animate();
     </script> 
+<body>  
+  <div class="welcome" style="position:absolute; width:50%; height:300px; margin-top:10%; padding-left:200px;font-family: 'Roboto Mono', monospace;color:white;">
+    <div class="row">
+      <p style="font-size:58px;">Welcome to</p><br>
+      <p style="font-size:64px;">the COMMUNITY</p>
+    </div>
+    <div class="row" style="font-size:36px;">
+    <br><br><p>Question to<br>Unquestionable</p>
+    </div>
+  </div>
+    <div class="form-popup" id="myForm" style="z-index: 1000;">
+    <form action="login.php" class="form-container" method="POST">
+        <h1>Login</h1>
+
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+
+        <button type="submit" class="btn" name="user_login">Login</button>
+        <a href="<?php echo $gClient->createAuthUrl();?>#" class="google btn btngg" style="background-color: #dd4b39; color: white ;"><i class="fa fa-google fa-fw">
+          </i> Login with Google+
+        </a>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" >
+        <div class="container">        
+          <a class="navbar-brand" href="#" style="font-family: 'Roboto Mono', monospace;"><img src="./assets/images/logo.png" alt="" width="50px" height="50px"> K-DIT</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse ms-auto justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav" style="cursor: pointer;">
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="openForm()">Sign In</a>
+              </li>
+            </ul>            
+          </div>
+        </div>        
+      </nav> 
+<?php         
+    }
+    if($_GET['error']==1){
+      echo '<script type="text/javascript">';
+      echo ' alert("Login Complete!!"); ';  //not showing an alert box.
+      echo '</script>';
+    }
+    else if ($_GET['error']==2){
+        echo '<script type="text/javascript">';
+        echo ' alert("Login Fail!!"); ';  //not showing an alert box.
+        echo '</script>';
+    }
+  
+?>  
+<div class="waveWrapper waveAnimation">
+  <div class="waveWrapperInner bgTop">
+
+  </div>
+  <div class="waveWrapperInner bgMiddle">
+
+  </div>
+  <div class="waveWrapperInner bgBottom">
+    
+  </div>
+</div> 
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js'></script>
+<script src='https://threejs.org/examples/js/controls/TrackballControls.js'></script>
+<script src='https://mamboleoo.be/learnThree/demos/OBJLoader.js'></script>
 
     <script>
       //var openPopUp = false;
