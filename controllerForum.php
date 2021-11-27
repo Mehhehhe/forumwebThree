@@ -98,21 +98,25 @@ if(!empty($_SESSION['user_status'])){
     if(isset($_POST['del_comment'])){
         $id_comment = $_POST['id_comment'];
 
-        //echo "<br>id_comment : ";
-        //echo $id_comment;
+        echo "<br>id_comment : ";
+        echo $id_comment;
 
-        $sql_select_comment = "SELECT id,id_post FROM comment WHERE id_comment='$id_comment'";
+        $sql_select_comment = "SELECT comment.id as id_comment ,comment.id_post ,post.id FROM comment,post WHERE id_comment='$id_comment'AND post.id_post = comment.id_post";
         $resuut_select_comment = $dbo->query("$sql_select_comment")->fetch();
 
         $id_post = $resuut_select_comment['id_post'];
-        $id = $resuut_select_comment['id'];
+        $comment_id = $resuut_select_comment['id_comment'];
+        $post_id = $resuut_select_comment['id'];
 
-        if($id==$user_id||$_SESSION['user_status']==2||$id==$user_id){
+        if($comment_id==$user_id||$_SESSION['user_status']==2||$post_id==$user_id){
 
+            echo "com";
             $sql_del_comment = "DELETE FROM comment WHERE id_comment='$id_comment'";
             $dbo->query("$sql_del_comment");
       
         }
+
+        echo $sql_del_comment;
         
         header("location: forum.php?id=$id_post");
     }
